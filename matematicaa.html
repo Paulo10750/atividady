@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Matemática - Trigonometria</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    /* =========================================================
+       ESTILOS EXTRAS - FOCO EM CELULAR
+       ========================================================= */
+    
+    .date-badge {
+      display: inline-block;
+      background: var(--accent-soft);
+      color: var(--accent-dark);
+      padding: 0.2rem 0.8rem;
+      border-radius: 50px !important;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      border: 2px solid var(--accent-primary);
+      margin-bottom: 0.5rem;
+    }
+
+    .date-badge.dark {
+      background: var(--accent-light);
+      border-color: var(--accent-dark);
+    }
+
+    .section-title {
+      color: var(--accent-dark);
+      border-bottom: 3px solid var(--accent-primary);
+      padding-bottom: 0.4rem;
+      margin: 2rem 0 1rem 0;
+      font-size: 1.2rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .section-subtitle {
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-top: -0.3rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .math-card {
+      background: var(--bg-card);
+      border: 2px solid var(--border-soft);
+      border-radius: var(--radius-card) !important;
+      padding: 1.2rem 1.2rem;
+      margin-bottom: 1.5rem;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .step-box {
+      background: var(--accent-soft);
+      border-radius: 16px !important;
+      padding: 0.8rem 1.2rem;
+      margin: 0.8rem 0;
+      border-left: 4px solid var(--accent-primary);
+    }
+
+    .step-box.dark {
+      border-left-color: var(--accent-dark);
+    }
+
+    .step-number {
+      font-weight: 800;
+      color: var(--accent-dark);
+      text-transform: uppercase;
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      margin-bottom: 0.2rem;
+    }
+
+    .equation-display {
+      font-family: 'Courier New', 'Consolas', monospace;
+      font-weight: 700;
+      font-size: 1rem;
+      color: var(--text-main);
+      background: var(--bg-page);
+      padding: 0.4rem 0.8rem;
+      border-radius: 10px !important;
+      border: 2px solid var(--accent-light);
+      display: inline-block;
+      margin: 0.3rem 0;
+      word-break: break-all;
+    }
+
+    .equation-big {
+      font-size: 1.15rem;
+      padding: 0.6rem 1rem;
+    }
+
+    .equation-block {
+      display: block;
+      text-align: center;
+      font-size: 1.2rem;
+      padding: 0.8rem;
+      margin: 0.5rem 0;
+    }
+
+    /* Grid de valores */
+    .valores-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.5rem;
+      margin: 0.8rem 0;
+    }
+
+    .valores-grid .col {
+      background: var(--bg-page);
+      border-radius: 12px !important;
+      padding: 0.6rem 0.8rem;
+    }
+
+    .valores-grid .col .label {
+      font-weight: 700;
+      color: var(--accent-dark);
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      border-bottom: 2px solid var(--accent-light);
+      padding-bottom: 0.2rem;
+      margin-bottom: 0.3rem;
+      display: block;
+    }
+
+    .valores-grid .col .linha {
+      font-family: 'Courier New', monospace;
+      font-size: 0.85rem;
+      padding: 0.1rem 0;
+      display: block;
+    }
+
+    /* Grade de exercícios */
+    .exercise-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin-top: 1.2rem;
+    }
+
+    .exercise-card {
+      background: var(--bg-card);
+      border: 2px solid var(--border-soft);
+      border-radius: var(--radius-card) !important;
+      padding: 1rem 1.2rem;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .exercise-letter {
+      font-weight: 800;
+      color: var(--accent-dark);
+      font-size: 1rem;
+      border-bottom: 2px solid var(--accent-primary);
+      padding-bottom: 0.4rem;
+      margin-bottom: 0.6rem;
+    }
+
+    .exercise-letter .badge {
+      background: var(--accent-primary);
+      color: #fff;
+      font-size: 0.55rem;
+      padding: 0.05rem 0.6rem;
+      border-radius: 50px !important;
+      letter-spacing: 0.05em;
+      margin-left: 0.4rem;
+    }
+
+    .calc-steps {
+      font-family: 'Courier New', 'Consolas', monospace;
+      line-height: 1.8;
+      font-size: 0.9rem;
+      padding: 0.3rem 0;
+    }
+
+    .calc-steps .step-line {
+      display: block;
+      padding: 0.05rem 0;
+    }
+
+    .final-result {
+      margin-top: 0.6rem;
+      padding-top: 0.6rem;
+      border-top: 2px dashed var(--accent-light);
+      font-weight: 800;
+      color: var(--accent-dark);
+      font-size: 1rem;
+    }
+
+    .final-result .result-box {
+      background: var(--accent-soft);
+      padding: 0.1rem 0.8rem;
+      border-radius: 50px !important;
+      display: inline-block;
+    }
+
+    .alternativas {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem 1.2rem;
+      margin: 0.5rem 0;
+      font-size: 0.95rem;
+    }
+
+    .alternativas .alt {
+      font-weight: 600;
+    }
+
+    .alternativas .alt.certa {
+      color: var(--accent-dark);
+      background: var(--accent-soft);
+      padding: 0.05rem 0.6rem;
+      border-radius: 50px !important;
+    }
+
+    /* Tabela resumo */
+    .table-wrapper {
+      overflow-x: auto;
+      margin: 0.8rem 0;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .resumo-table {
+      width: 100%;
+      min-width: 280px;
+      border-collapse: collapse;
+      font-size: 0.85rem;
+    }
+
+    .resumo-table th {
+      background: var(--accent-primary);
+      color: #fff;
+      padding: 0.4rem 0.6rem;
+      text-align: center;
+      font-weight: 700;
+      text-transform: uppercase;
+      font-size: 0.7rem;
+      letter-spacing: 0.05em;
+    }
+
+    .resumo-table td {
+      padding: 0.3rem 0.6rem;
+      border-bottom: 1px solid var(--border-soft);
+      text-align: center;
+    }
+
+    .resumo-table tr:nth-child(even) td {
+      background: var(--bg-page);
+    }
+
+    /* Sinais lado a lado */
+    .sinais-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin: 1rem 0;
+    }
+
+    .sinais-grid .item {
+      background: var(--accent-soft);
+      border-radius: 16px !important;
+      padding: 1rem;
+      text-align: center;
+    }
+
+    .sinais-grid .item .titulo {
+      font-weight: 800;
+      color: var(--accent-dark);
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .sinais-grid .item .simbolo {
+      font-size: 1.8rem;
+      font-weight: 700;
+      margin: 0.2rem 0;
+      color: var(--accent-dark);
+    }
+
+    .sinais-grid .item .desc {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--accent-dark);
+    }
+
+    /* Ajustes para telas pequenas */
+    @media (max-width: 480px) {
+      .math-card {
+        padding: 0.8rem 0.8rem;
+      }
+
+      .step-box {
+        padding: 0.6rem 0.8rem;
+      }
+
+      .equation-display {
+        font-size: 0.85rem;
+        padding: 0.3rem 0.6rem;
+      }
+
+      .equation-big {
+        font-size: 1rem;
+      }
+
+      .equation-block {
+        font-size: 1rem;
+      }
+
+      .exercise-card {
+        padding: 0.8rem 0.8rem;
+      }
+
+      .calc-steps {
+        font-size: 0.8rem;
+      }
+
+      .valores-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .sinais-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .section-title {
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="logo">
+      <video src="espiral.mp4" class="logo-img" autoplay loop muted playsinline></video>
+      <span>MATEMÁTICA</span>
+    </div>
+    
+    <div class="menu-container">
+      <button class="menu-btn" id="menuBtn" aria-label="Abrir Menu">&#9776;</button>
+      <nav class="dropdown-menu" id="dropdownMenu">
+        <span>Navegação</span>
+<ul>
+          <li><a href="index.html">Início</a></li>
+          <li><a href="pca.html">PCA</a></li>
+          <li><a href="redacao.html">Redação</a></li>
+          <li><a href="edc.html">Educação Física</a></li>
+          <li><a href="filosofia.html">Filosofia</a></li>
+          <li><a href="geografia.html">Geografia</a></li>
+          <li><a href="historia.html">História</a></li>
+          <li><a href="matematica.html">Matemática Básica</a></li>
+          <li><a href="matematicaa.html">Matemática</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <script>
+    const menuBtn = document.getElementById('menuBtn');
+    const dropdownMenu = document.getElementById('dropdownMenu');
+
+    menuBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      dropdownMenu.classList.toggle('active');
+    });
+
+    document.addEventListener('click', () => {
+      dropdownMenu.classList.remove('active');
+    });
+  </script>
+
+  <main>
+    <!-- CABEÇALHO COM DATA -->
+    <section class="welcome-card">
+      <div class="date-badge">
+        <span id="currentDate"></span>
+      </div>
+      <h1>Trigonometria <span class="highlight">no Círculo</span></h1>
+      <p style="font-size: 1rem;">
+        Seno, Cosseno e Variação de Sinais
+      </p>
+    </section>
+
+    <script>
+      const hoje = new Date();
+      const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+      document.getElementById('currentDate').textContent = hoje.toLocaleDateString('pt-BR', options);
+    </script>
+
+    <!-- =========================================================
+         TEORIA: SENO E COSSENO
+         DATA DA IMAGEM: 16/08/2026
+         ========================================================= -->
+    <article class="math-card">
+      <div class="date-badge dark">
+        Conteúdo: 16/08/2026
+      </div>
+      <h2 class="section-title">Seno e Cosseno no Círculo Trigonométrico</h2>
+
+      <p style="font-size: 0.95rem;">
+        Dado um arco trigonométrico <strong>AM</strong> de medida <strong>x</strong>, chamamos de:
+      </p>
+
+      <div class="step-box">
+        <div class="step-number">Definições</div>
+        <div class="equation-display" style="display: block; text-align: center; font-size: 1.1rem;">
+          cos x = abscissa de M
+        </div>
+        <div class="equation-display" style="display: block; text-align: center; font-size: 1.1rem;">
+          sen x = ordenada de M
+        </div>
+      </div>
+
+      <div class="step-box dark">
+        <div class="step-number">Valores Notáveis</div>
+        <p style="font-size: 0.85rem; font-weight: 600; margin-bottom: 0.5rem;">Como o raio da circunferência trigonométrica é unitário (medida = 1):</p>
+        
+        <div class="valores-grid">
+          <div class="col">
+            <span class="label">Cosseno</span>
+            <span class="linha">cos 0° = 1</span>
+            <span class="linha">cos 90° = 0</span>
+            <span class="linha">cos 180° = -1</span>
+            <span class="linha">cos 270° = 0</span>
+            <span class="linha">cos 360° = 1</span>
+          </div>
+          <div class="col">
+            <span class="label">Seno</span>
+            <span class="linha">sen 0° = 0</span>
+            <span class="linha">sen 90° = 1</span>
+            <span class="linha">sen 180° = 0</span>
+            <span class="linha">sen 270° = -1</span>
+            <span class="linha">sen 360° = 0</span>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- =========================================================
+         VARIAÇÃO DE SINAIS
+         DATA DA IMAGEM: 16/08/2026
+         ========================================================= -->
+    <article class="math-card">
+      <div class="date-badge dark">
+        Conteúdo: 16/08/2026
+      </div>
+      <h2 class="section-title">Variação de Sinais</h2>
+
+      <div class="sinais-grid">
+        <div class="item">
+          <div class="titulo">Seno</div>
+          <div class="simbolo">+ / -</div>
+          <div class="desc">Variação no círculo</div>
+        </div>
+        <div class="item">
+          <div class="titulo">Cosseno</div>
+          <div class="simbolo">+ / -</div>
+          <div class="desc">Variação no círculo</div>
+        </div>
+      </div>
+
+      <div class="step-box">
+        <div class="step-number">Exemplo</div>
+        <p style="font-size: 0.9rem;">Calcule o valor da expressão:</p>
+        <div class="equation-display equation-block">
+          E = (sen 180° + cos 180° - sen 270°) / (sen 90° + cos 360°)
+        </div>
+        <div style="margin-top: 0.5rem; font-size: 0.9rem;">
+          <span class="step-line">sen 180° = 0</span>
+          <span class="step-line">cos 180° = -1</span>
+          <span class="step-line">sen 270° = -1</span>
+          <span class="step-line">sen 90° = 1</span>
+          <span class="step-line">cos 360° = 1</span>
+        </div>
+        <div style="margin-top: 0.5rem; font-size: 1rem; font-weight: 700; color: var(--accent-dark);">
+          E = (0 + (-1) - (-1)) / (1 + 1) = 0 / 2 = <span style="background: var(--accent-primary); color: #fff; padding: 0.1rem 0.8rem; border-radius: 50px;">0</span>
+        </div>
+      </div>
+    </article>
+
+    <!-- =========================================================
+         EXERCÍCIOS - CÍRCULO TRIGONOMÉTRICO
+         DATA DA IMAGEM: 16/08/2026
+         ========================================================= -->
+    <article class="math-card">
+      <div class="date-badge dark">
+        Exercícios: 16/08/2026
+      </div>
+      <h2 class="section-title">Exercícios - Círculo Trigonométrico</h2>
+
+      <div class="exercise-grid">
+
+        <!-- Questão 21 -->
+        <div class="exercise-card">
+          <div class="exercise-letter">21) <span class="badge">Valores</span></div>
+          
+          <div style="margin-bottom: 0.8rem;">
+            <p style="font-size: 0.9rem; font-weight: 600;">a) cos θ = sen θ</p>
+            <div style="display: flex; flex-wrap: wrap; gap: 0.5rem; font-family: 'Courier New', monospace; font-size: 0.9rem;">
+              <span style="background: var(--bg-page); padding: 0.1rem 0.6rem; border-radius: 8px;">cos θ = 1</span>
+              <span style="background: var(--bg-page); padding: 0.1rem 0.6rem; border-radius: 8px;">sen θ = 0</span>
+            </div>
+          </div>
+
+          <div style="margin-bottom: 0.8rem;">
+            <p style="font-size: 0.9rem; font-weight: 600;">b) cos (π/2)</p>
+            <div style="display: flex; flex-wrap: wrap; gap: 0.5rem; font-family: 'Courier New', monospace; font-size: 0.9rem;">
+              <span style="background: var(--bg-page); padding: 0.1rem 0.6rem; border-radius: 8px;">cos (π/2) = 0</span>
+              <span style="background: var(--bg-page); padding: 0.1rem 0.6rem; border-radius: 8px;">sen (π/2) = 1</span>
+            </div>
+          </div>
+
+          <div style="margin-bottom: 0.8rem;">
+            <p style="font-size: 0.9rem; font-weight: 600;">c) cos π</p>
+            <div style="display: flex; flex-wrap: wrap; gap: 0.5rem; font-family: 'Courier New', monospace; font-size: 0.9rem;">
+              <span style="background: var(--bg-page); padding: 0.1rem 0.6rem; border-radius: 8px;">cos π = -1</span>
+              <span style="background: var(--bg-page); padding: 0.1rem 0.6rem; border-radius: 8px;">sen π = 0</span>
+            </div>
+          </div>
+
+          <div style="margin-bottom: 0.8rem;">
+            <p style="font-size: 0.9rem; font-weight: 600;">d) cos 3π = sen 3π</p>
+            <div style="display: flex; flex-wrap: wrap; gap: 0.5rem; font-family: 'Courier New', monospace; font-size: 0.9rem;">
+              <span style="background: var(--bg-page); padding: 0.1rem 0.6rem; border-radius: 8px;">cos 3π = 0</span>
+              <span style="background: var(--bg-page); padding: 0.1rem 0.6rem; border-radius: 8px;">sen 3π = -1</span>
+            </div>
+          </div>
+
+          <div>
+            <p style="font-size: 0.9rem; font-weight: 600;">e) cos 2π = sen 2π</p>
+            <div style="display: flex; flex-wrap: wrap; gap: 0.5rem; font-family: 'Courier New', monospace; font-size: 0.9rem;">
+              <span style="background: var(--bg-page); padding: 0.1rem 0.6rem; border-radius: 8px;">cos 2π = 1</span>
+              <span style="background: var(--bg-page); padding: 0.1rem 0.6rem; border-radius: 8px;">sen 2π = 0</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Questão 22 -->
+        <div class="exercise-card">
+          <div class="exercise-letter">22) <span class="badge">Valor Numérico</span></div>
+          <p style="font-size: 0.9rem; font-weight: 600; margin-bottom: 0.5rem;">
+            E = 5·cos x + cos(2x) - 3·sen(3x), para x = 180°
+          </p>
+
+          <div class="step-box" style="margin: 0.5rem 0; padding: 0.6rem 1rem;">
+            <div class="step-number">Resolução</div>
+            <div class="calc-steps">
+              <span class="step-line">cos 180° = -1</span>
+              <span class="step-line">cos(2·180°) = cos 360° = 1</span>
+              <span class="step-line">sen(3·180°) = sen 540° = sen 180° = 0</span>
+              <span class="step-line" style="font-weight: 700; margin-top: 0.3rem;">E = 5·(-1) + 1 - 3·0</span>
+              <span class="step-line">E = -5 + 1 + 0</span>
+            </div>
+            <div class="final-result" style="border-top: none; margin-top: 0.3rem; padding-top: 0;">
+              <span class="result-box">E = -4</span>
+            </div>
+          </div>
+
+          <div class="alternativas">
+            <span class="alt">a) 0</span>
+            <span class="alt">b) -1</span>
+            <span class="alt">c) 1</span>
+            <span class="alt">d) 3</span>
+            <span class="alt certa">e) -4</span>
+          </div>
+        </div>
+
+      </div>
+    </article>
+
+    <!-- =========================================================
+         RESUMO DOS VALORES
+         ========================================================= -->
+    <article class="math-card">
+      <h2 class="section-title">Resumo - Valores Notáveis</h2>
+      
+      <div class="table-wrapper">
+        <table class="resumo-table">
+          <thead>
+            <tr>
+              <th>Ângulo</th>
+              <th>sen</th>
+              <th>cos</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>0°</td><td>0</td><td>1</td></tr>
+            <tr><td>90°</td><td>1</td><td>0</td></tr>
+            <tr><td>180°</td><td>0</td><td>-1</td></tr>
+            <tr><td>270°</td><td>-1</td><td>0</td></tr>
+            <tr><td>360°</td><td>0</td><td>1</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </article>
+
+  </main>
+
+  <footer>
+    <p>Conteúdo organizado com carinho — Trigonometria</p>
+  </footer>
+
+</body>
+</html>

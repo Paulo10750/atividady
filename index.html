@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Início</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <header>
+    <div class="logo">
+  <img src="Fofo.gif" class="logo-img" alt="Logo">
+  <span>INÍCIO</span>
+</div>
+
+    
+    <div class="menu-container">
+      <!-- Botão Redondo com Ícone Hambúrguer (3 Linhas) -->
+      <button class="menu-btn" id="menuBtn" aria-label="Abrir Menu">&#9776;</button>
+      
+      <!-- Menu Dropdown Oculto -->
+      <nav class="dropdown-menu" id="dropdownMenu">
+        <span>Navegação</span>
+        <ul>
+          <li><a href="index.html">Início</a></li>
+          <li><a href="pca.html">PCA</a></li>
+          <li><a href="redacao.html">Redação</a></li>
+          <li><a href="edc.html">Educação Física</a></li>
+          <li><a href="filosofia.html">Filosofia</a></li>
+          <li><a href="geografia.html">Geografia</a></li>
+          <li><a href="historia.html">História</a></li>
+          <li><a href="matematica.html">Matemática Básica</a></li>
+          <li><a href="matematicaa.html">Matemática</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="welcome-card">
+      <h1>Seja Bem-vindo(a)</h1>
+      <p>Este é o meu cantinho digital, organizado para compartilhar meus conteúdos, anotações e atividades escolares.</p>
+      
+      <div class="poem">
+        <p>No tear dos dias, traço o caminho,</p>
+        <p>Cada ideia tecida com calma e carinho.</p>
+        <p>O saber se transforma em aprendizado,</p>
+        <p>E o futuro se molda no que foi semeado.</p>
+      </div>
+
+      <div class="buttons-container">
+        <a href="pca.html" class="btn">PCA</a>
+        <a href="sociologia.html" class="btn">Sociologia</a>
+        <a href="portugues.html" class="btn">Português</a>
+        <a href="filosofia.html" class="btn">Filosofia</a>
+        <a href="geografia.html" class="btn">Geografia</a>
+        <a href="redacao.html" class="btn">Redação</a>
+        <a href="matematica.html" class ="btn">Matemática Básica</a>
+        <a href="historia.html" class="btn">História</a>
+        <a href="edc.html" class="btn">Educação Física</a>
+        <a href="matematicaa.html" class="btn">Matemática</a>
+        
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 𝒜𝓉𝓊𝓁𝒾𝒶𝓏𝒶𝒹ℴ</p>
+  </footer>
+
+  <script>
+    const menuBtn = document.getElementById('menuBtn');
+    const dropdownMenu = document.getElementById('dropdownMenu');
+
+    // Abre e fecha o menu ao clicar no botão
+    menuBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      dropdownMenu.classList.toggle('active');
+    });
+
+    // Fecha o menu ao clicar fora dele
+    document.addEventListener('click', () => {
+      dropdownMenu.classList.remove('active');
+    });
+  </script>
+
+</body>
+</html>

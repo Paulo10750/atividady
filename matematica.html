@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Matemática Básica - Equações</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    /* =========================================================
+       ESTILOS EXTRAS - FOCO EM CELULAR
+       ========================================================= */
+    
+    .date-badge {
+      display: inline-block;
+      background: var(--accent-soft);
+      color: var(--accent-dark);
+      padding: 0.2rem 1rem;
+      border-radius: 50px !important;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      border: 2px solid var(--accent-primary);
+      margin-bottom: 0.5rem;
+    }
+
+    .section-title {
+      color: var(--accent-dark);
+      border-bottom: 3px solid var(--accent-primary);
+      padding-bottom: 0.4rem;
+      margin: 2rem 0 1rem 0;
+      font-size: 1.2rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .section-subtitle {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-top: -0.3rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .math-card {
+      background: var(--bg-card);
+      border: 2px solid var(--border-soft);
+      border-radius: var(--radius-card) !important;
+      padding: 1.2rem 1.2rem;
+      margin-bottom: 1.5rem;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .step-box {
+      background: var(--accent-soft);
+      border-radius: 16px !important;
+      padding: 0.8rem 1.2rem;
+      margin: 0.8rem 0;
+      border-left: 4px solid var(--accent-primary);
+    }
+
+    .step-number {
+      font-weight: 800;
+      color: var(--accent-dark);
+      text-transform: uppercase;
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      margin-bottom: 0.2rem;
+    }
+
+    .equation-display {
+      font-family: 'Courier New', 'Consolas', monospace;
+      font-weight: 700;
+      font-size: 1rem;
+      color: var(--text-main);
+      background: var(--bg-page);
+      padding: 0.4rem 0.8rem;
+      border-radius: 10px !important;
+      border: 2px solid var(--accent-light);
+      display: inline-block;
+      margin: 0.3rem 0;
+      word-break: break-all;
+    }
+
+    .equation-big {
+      font-size: 1.15rem;
+      padding: 0.6rem 1rem;
+    }
+
+    /* Lista de requisitos */
+    .requisitos-list {
+      list-style: none;
+      padding: 0;
+      margin: 0.5rem 0;
+    }
+
+    .requisitos-list li {
+      padding: 0.4rem 0;
+      display: flex;
+      align-items: flex-start;
+      gap: 0.6rem;
+      font-size: 0.95rem;
+    }
+
+    .requisitos-list .num {
+      font-weight: 800;
+      color: var(--accent-dark);
+      min-width: 24px;
+    }
+
+    /* Grid de exercícios - FOCO EM CELULAR */
+    .exercise-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin-top: 1.2rem;
+    }
+
+    .exercise-card {
+      background: var(--bg-card);
+      border: 2px solid var(--border-soft);
+      border-radius: var(--radius-card) !important;
+      padding: 1rem 1.2rem;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .exercise-letter {
+      font-weight: 800;
+      color: var(--accent-dark);
+      font-size: 1rem;
+      border-bottom: 2px solid var(--accent-primary);
+      padding-bottom: 0.4rem;
+      margin-bottom: 0.6rem;
+    }
+
+    .exercise-letter .badge {
+      background: var(--accent-primary);
+      color: #fff;
+      font-size: 0.55rem;
+      padding: 0.05rem 0.6rem;
+      border-radius: 50px !important;
+      letter-spacing: 0.05em;
+      margin-left: 0.4rem;
+    }
+
+    .calc-steps {
+      font-family: 'Courier New', 'Consolas', monospace;
+      line-height: 1.8;
+      font-size: 0.9rem;
+      padding: 0.3rem 0;
+    }
+
+    .calc-steps .step-line {
+      display: block;
+      padding: 0.05rem 0;
+    }
+
+    .final-result {
+      margin-top: 0.6rem;
+      padding-top: 0.6rem;
+      border-top: 2px dashed var(--accent-light);
+      font-weight: 800;
+      color: var(--accent-dark);
+      font-size: 1rem;
+    }
+
+    .final-result .result-box {
+      background: var(--accent-soft);
+      padding: 0.1rem 0.8rem;
+      border-radius: 50px !important;
+      display: inline-block;
+    }
+
+    /* Tabela - versão mobile friendly */
+    .table-wrapper {
+      overflow-x: auto;
+      margin: 0.8rem 0;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .identify-table {
+      width: 100%;
+      min-width: 500px;
+      border-collapse: collapse;
+      font-size: 0.8rem;
+    }
+
+    .identify-table th {
+      background: var(--accent-primary);
+      color: #fff;
+      padding: 0.4rem 0.6rem;
+      text-align: left;
+      font-weight: 700;
+      text-transform: uppercase;
+      font-size: 0.65rem;
+      letter-spacing: 0.05em;
+      white-space: nowrap;
+    }
+
+    .identify-table td {
+      padding: 0.4rem 0.6rem;
+      border-bottom: 1px solid var(--border-soft);
+      font-size: 0.8rem;
+    }
+
+    .identify-table tr:nth-child(even) td {
+      background: var(--bg-page);
+    }
+
+    .tag {
+      display: inline-block;
+      padding: 0.05rem 0.6rem;
+      border-radius: 50px !important;
+      font-size: 0.6rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      white-space: nowrap;
+    }
+
+    .tag-equation {
+      background: var(--accent-primary);
+      color: #fff;
+    }
+
+    .tag-not-equation {
+      background: #e0d6dc;
+      color: var(--text-muted);
+    }
+
+    .tag-degree {
+      background: var(--accent-dark);
+      color: #fff;
+    }
+
+    /* Membros lado a lado - mobile */
+    .membros-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+      margin: 1rem 0;
+    }
+
+    .membro-box {
+      flex: 1;
+      min-width: 120px;
+      background: var(--accent-soft);
+      border-radius: 14px !important;
+      padding: 0.8rem 1rem;
+      text-align: center;
+    }
+
+    .membro-box .label {
+      font-weight: 800;
+      color: var(--accent-dark);
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .membro-box .expressao {
+      font-size: 1rem;
+      font-weight: 700;
+      font-family: 'Courier New', monospace;
+      word-break: break-all;
+    }
+
+    .igual-grande {
+      display: flex;
+      align-items: center;
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: var(--accent-primary);
+    }
+
+    /* Graus exemplos */
+    .graus-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+      margin: 0.5rem 0;
+    }
+
+    .graus-grid .linha {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.9rem;
+    }
+
+    .graus-grid .linha .tag {
+      font-size: 0.6rem;
+    }
+
+    /* Ajustes para telas pequenas */
+    @media (max-width: 480px) {
+      .math-card {
+        padding: 0.8rem 0.8rem;
+      }
+
+      .step-box {
+        padding: 0.6rem 0.8rem;
+      }
+
+      .equation-display {
+        font-size: 0.85rem;
+        padding: 0.3rem 0.6rem;
+      }
+
+      .equation-big {
+        font-size: 1rem;
+      }
+
+      .exercise-card {
+        padding: 0.8rem 0.8rem;
+      }
+
+      .calc-steps {
+        font-size: 0.8rem;
+      }
+
+      .identify-table {
+        font-size: 0.7rem;
+        min-width: 420px;
+      }
+
+      .identify-table th,
+      .identify-table td {
+        padding: 0.3rem 0.4rem;
+        font-size: 0.7rem;
+      }
+
+      .membro-box .expressao {
+        font-size: 0.85rem;
+      }
+
+      .section-title {
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="logo">
+      <video src="espiral.mp4" class="logo-img" autoplay loop muted playsinline></video>
+      <span>MATEMÁTICA</span>
+    </div>
+    
+    <div class="menu-container">
+      <button class="menu-btn" id="menuBtn" aria-label="Abrir Menu">&#9776;</button>
+      <nav class="dropdown-menu" id="dropdownMenu">
+        <span>Navegação</span>
+        <ul>
+          <li><a href="index.html">Início</a></li>
+          <li><a href="pca.html">PCA</a></li>
+          <li><a href="redacao.html">Redação</a></li>
+          <li><a href="edc.html">Educação Física</a></li>
+          <li><a href="filosofia.html">Filosofia</a></li>
+          <li><a href="geografia.html">Geografia</a></li>
+          <li><a href="historia.html">História</a></li>
+          <li><a href="matematica.html">Matemática Básica</a></li>
+          <li><a href="matematicaa.html">Matemática</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <script>
+    const menuBtn = document.getElementById('menuBtn');
+    const dropdownMenu = document.getElementById('dropdownMenu');
+
+    menuBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      dropdownMenu.classList.toggle('active');
+    });
+
+    document.addEventListener('click', () => {
+      dropdownMenu.classList.remove('active');
+    });
+  </script>
+
+  <main>
+    <!-- CABEÇALHO COM DATA -->
+    <section class="welcome-card">
+      <div class="date-badge">
+        <span id="currentDate"></span>
+      </div>
+      <h1>Matemática <span class="highlight">Básica</span></h1>
+      <p style="font-size: 1rem;">
+        Equações do 1º Grau com 1 Incógnita
+      </p>
+    </section>
+
+    <script>
+      const hoje = new Date();
+      const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+      document.getElementById('currentDate').textContent = hoje.toLocaleDateString('pt-BR', options);
+    </script>
+
+    <!-- =========================================================
+         TEORIA: O QUE É UMA EQUAÇÃO
+         ========================================================= -->
+    <article class="math-card">
+      <h2 class="section-title">O que é uma Equação?</h2>
+
+      <p style="font-size: 0.95rem;">
+        <strong>Equação</strong> é uma sentença matemática <strong>aberta</strong> que exprime uma <strong>relação de igualdade</strong>.
+      </p>
+
+      <div class="step-box">
+        <div class="step-number">Exemplos:</div>
+        <div class="equation-display">7x = 8</div>
+        <div class="equation-display">4k - 16 = 3c + 1</div>
+        <div class="equation-display">8x² - 256 = x + 200</div>
+      </div>
+
+      <div class="step-box" style="border-left-color: var(--accent-dark);">
+        <div class="step-number">Atenção:</div>
+        <p style="font-size: 0.9rem;">Números em uma equação podem aparecer com operadores:</p>
+        <div class="equation-display">4 + 6 = 10</div>
+        <div class="equation-display" style="border-color: #ccc;">2a + b ≠ c  →  não é equação</div>
+        <div class="equation-display" style="border-color: #ccc;">14 - 28 &lt; 10  →  não é equação</div>
+      </div>
+
+      <h3 style="margin-top: 1.2rem; color: var(--accent-dark); font-size: 1rem;">Para ser uma equação, precisa de:</h3>
+      <ul class="requisitos-list">
+        <li>
+          <span class="num">1</span>
+          <span>Algo com <strong>valor desconhecido</strong> — chamado de <strong>incógnita</strong> ou <strong>variável</strong>.</span>
+        </li>
+        <li>
+          <span class="num">2</span>
+          <span>O <strong>sinal de igual</strong> (=).</span>
+        </li>
+      </ul>
+
+      <div class="step-box">
+        <div class="step-number">Grau da Equação</div>
+        <p style="font-size: 0.9rem;">O <strong>grau</strong> é definido pelo <strong>maior expoente</strong> da variável.</p>
+        <div class="graus-grid">
+          <div class="linha">
+            <span class="equation-display" style="font-size: 0.85rem;">2 - x = 8</span>
+            <span class="tag tag-degree">Grau 1</span>
+          </div>
+          <div class="linha">
+            <span class="equation-display" style="font-size: 0.85rem;">7x³ = 278</span>
+            <span class="tag tag-degree">Grau 3</span>
+          </div>
+          <div class="linha">
+            <span class="equation-display" style="font-size: 0.85rem;">25x² - 3 = 0</span>
+            <span class="tag tag-degree">Grau 2</span>
+          </div>
+          <div class="linha">
+            <span class="equation-display" style="font-size: 0.85rem;">x⁵ - x⁸ = 27</span>
+            <span class="tag tag-degree">Grau 8</span>
+          </div>
+        </div>
+        <p style="margin-top: 0.3rem; font-size: 0.8rem; color: var(--text-muted);">
+          Obs: O expoente negativo não altera o grau.
+        </p>
+      </div>
+    </article>
+
+    <!-- =========================================================
+         PARTES DA EQUAÇÃO
+         ========================================================= -->
+    <article class="math-card">
+      <h2 class="section-title">Partes da Equação</h2>
+
+      <p style="font-size: 0.95rem;">Toda equação possui <strong>dois membros</strong>:</p>
+
+      <div class="membros-container">
+        <div class="membro-box">
+          <div class="label">1º Membro</div>
+          <div class="expressao">25x⁸ - 16x⁴ - 9x³</div>
+        </div>
+        <div class="igual-grande">=</div>
+        <div class="membro-box">
+          <div class="label">2º Membro</div>
+          <div class="expressao">4x² - 1x + 1</div>
+        </div>
+      </div>
+
+      <div class="step-box">
+        <div class="step-number">Propriedade</div>
+        <p style="font-size: 0.9rem;">Só se pode fazer <strong>uma operação de cada vez</strong> em ambos os lados para manter a igualdade.</p>
+        <div class="equation-display" style="font-size: 0.85rem;">50t + 20x = 400 + 50</div>
+        <div class="equation-display" style="font-size: 0.85rem;">20x + 50 = 450</div>
+      </div>
+    </article>
+
+    <!-- =========================================================
+         IDENTIFICANDO EQUAÇÕES
+         ========================================================= -->
+    <article class="math-card">
+      <h2 class="section-title">Identificando Equações</h2>
+      <p class="section-subtitle">É equação? Qual o grau? Quais os membros?</p>
+
+      <div class="table-wrapper">
+        <table class="identify-table">
+          <thead>
+            <tr>
+              <th>Sentença</th>
+              <th>Equação?</th>
+              <th>Grau</th>
+              <th>1º Membro</th>
+              <th>2º Membro</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>a)</strong> 2x - 16</td>
+              <td><span class="tag tag-equation">Sim</span></td>
+              <td><span class="tag tag-degree">1</span></td>
+              <td>2x</td>
+              <td>16</td>
+            </tr>
+            <tr>
+              <td><strong>b)</strong> x³ - x² - x = 30</td>
+              <td><span class="tag tag-equation">Sim</span></td>
+              <td><span class="tag tag-degree">3</span></td>
+              <td>x³ - x² - x</td>
+              <td>30</td>
+            </tr>
+            <tr>
+              <td><strong>c)</strong> ux⁰ = 4</td>
+              <td><span class="tag tag-not-equation">Não</span></td>
+              <td>—</td>
+              <td>—</td>
+              <td>—</td>
+            </tr>
+            <tr>
+              <td><strong>d)</strong> 18²a + b - c &gt; 56</td>
+              <td><span class="tag tag-not-equation">Não</span></td>
+              <td>—</td>
+              <td>—</td>
+              <td>—</td>
+            </tr>
+            <tr>
+              <td><strong>e)</strong> 3x⁵ + 4x⁴ - 7c³</td>
+              <td><span class="tag tag-equation">Sim</span></td>
+              <td><span class="tag tag-degree">5</span></td>
+              <td>3x⁵ + 4x⁴</td>
+              <td>7c³</td>
+            </tr>
+            <tr>
+              <td><strong>f)</strong> x³ + 2x² - 3x + 500</td>
+              <td><span class="tag tag-equation">Sim</span></td>
+              <td><span class="tag tag-degree">3</span></td>
+              <td>x³ + 2x² - 3x</td>
+              <td>500</td>
+            </tr>
+            <tr>
+              <td><strong>g)</strong> 13P - 34</td>
+              <td><span class="tag tag-not-equation">Não</span></td>
+              <td>—</td>
+              <td>—</td>
+              <td>—</td>
+            </tr>
+            <tr>
+              <td><strong>h)</strong> 5a²b - 3 = 40</td>
+              <td><span class="tag tag-equation">Sim</span></td>
+              <td><span class="tag tag-degree">2</span></td>
+              <td>5a²b - 3</td>
+              <td>40</td>
+            </tr>
+            <tr>
+              <td><strong>i)</strong> (x³ - x²) : x + 70 = 20</td>
+              <td><span class="tag tag-equation">Sim</span></td>
+              <td><span class="tag tag-degree">2</span></td>
+              <td>(x³ - x²) : x + 70</td>
+              <td>20</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </article>
+
+    <!-- =========================================================
+         PASSO A PASSO
+         ========================================================= -->
+    <article class="math-card">
+      <h2 class="section-title">Como Resolver</h2>
+      <p class="section-subtitle">Forma geral: <strong>ax + b = 0</strong>, com <strong>a ≠ 0</strong></p>
+
+      <div class="step-box">
+        <div class="step-number">Exemplo:</div>
+        <div class="equation-display equation-big">25 + 2x + 3x + 25 = 0</div>
+      </div>
+
+      <div class="step-box">
+        <div class="step-number">1º Passo:</div>
+        <p style="font-size: 0.9rem;">Juntar todos os termos com variável em um lado e os números sem variável no outro.</p>
+        <div class="equation-display">25 + 2x + 3x + 25 = 0</div>
+        <div class="equation-display">5x + 50 = 0</div>
+      </div>
+
+      <div class="step-box">
+        <div class="step-number">2º Passo:</div>
+        <p style="font-size: 0.9rem;">Colocar a variável e o termo independente em lados diferentes.</p>
+        <div class="equation-display">5x = -50</div>
+      </div>
+
+      <div class="step-box">
+        <div class="step-number">3º Passo:</div>
+        <p style="font-size: 0.9rem;">Passar o coeficiente de "x" dividindo para o outro lado.</p>
+        <div class="equation-display">x = -50 / 5</div>
+      </div>
+
+      <div class="step-box">
+        <div class="step-number">4º Passo:</div>
+        <p style="font-size: 0.9rem;">Resolver a operação e encontrar o resultado.</p>
+        <div class="equation-display equation-big">x = -10</div>
+      </div>
+    </article>
+
+    <!-- =========================================================
+         EXERCÍCIOS RESOLVIDOS
+         ========================================================= -->
+    <h2 class="section-title">Exercícios Resolvidos</h2>
+    <p class="section-subtitle">Resolva as equações do 1º grau:</p>
+
+    <div class="exercise-grid">
+
+      <div class="exercise-card">
+        <div class="exercise-letter">a) <span class="badge">1º grau</span></div>
+        <div class="equation-display" style="margin-bottom: 0.5rem;">4x - 40 = 160</div>
+        <div class="calc-steps">
+          <span class="step-line">4x = 160 + 40</span>
+          <span class="step-line">4x = 200</span>
+          <span class="step-line">x = 200 / 4</span>
+        </div>
+        <div class="final-result"><span class="result-box">x = 50</span></div>
+      </div>
+
+      <div class="exercise-card">
+        <div class="exercise-letter">b) <span class="badge">1º grau</span></div>
+        <div class="equation-display" style="margin-bottom: 0.5rem;">28 - 3x = 7x - 35</div>
+        <div class="calc-steps">
+          <span class="step-line">-3x = 7x - 35 - 28</span>
+          <span class="step-line">-3x - 7x = -63</span>
+          <span class="step-line">-10x = -63</span>
+          <span class="step-line">x = 63/10</span>
+        </div>
+        <div class="final-result"><span class="result-box">x = 6,3</span></div>
+      </div>
+
+      <div class="exercise-card">
+        <div class="exercise-letter">c) <span class="badge">1º grau</span></div>
+        <div class="equation-display" style="margin-bottom: 0.5rem;">34 = 8x + 9x + 102</div>
+        <div class="calc-steps">
+          <span class="step-line">34 = 17x + 102</span>
+          <span class="step-line">34 - 102 = 17x</span>
+          <span class="step-line">-68 = 17x</span>
+          <span class="step-line">x = -68/17</span>
+        </div>
+        <div class="final-result"><span class="result-box">x = -4</span></div>
+      </div>
+
+      <div class="exercise-card">
+        <div class="exercise-letter">d) <span class="badge">1º grau</span></div>
+        <div class="equation-display" style="margin-bottom: 0.5rem;">25x + 38 - 85 = 4x - 4</div>
+        <div class="calc-steps">
+          <span class="step-line">25x - 47 = 4x - 4</span>
+          <span class="step-line">25x - 4x = -4 + 47</span>
+          <span class="step-line">21x = 43</span>
+          <span class="step-line">x = 43/21</span>
+        </div>
+        <div class="final-result"><span class="result-box">x ≈ 2,05</span></div>
+      </div>
+
+      <div class="exercise-card">
+        <div class="exercise-letter">e) <span class="badge">1º grau</span></div>
+        <div class="equation-display" style="margin-bottom: 0.5rem;">9x = 90x - 9837</div>
+        <div class="calc-steps">
+          <span class="step-line">9x - 90x = -9837</span>
+          <span class="step-line">-81x = -9837</span>
+          <span class="step-line">81x = 9837</span>
+          <span class="step-line">x = 9837/81</span>
+        </div>
+        <div class="final-result"><span class="result-box">x ≈ 121,44</span></div>
+      </div>
+
+      <div class="exercise-card">
+        <div class="exercise-letter">f) <span class="badge">1º grau</span></div>
+        <div class="equation-display" style="margin-bottom: 0.5rem;">45x + 9000 = 40x + 8000</div>
+        <div class="calc-steps">
+          <span class="step-line">45x - 40x = 8000 - 9000</span>
+          <span class="step-line">5x = -1000</span>
+          <span class="step-line">x = -1000/5</span>
+        </div>
+        <div class="final-result"><span class="result-box">x = -200</span></div>
+      </div>
+
+      <div class="exercise-card">
+        <div class="exercise-letter">g) <span class="badge">1º grau</span></div>
+        <div class="equation-display" style="margin-bottom: 0.5rem;">36x = 198</div>
+        <div class="calc-steps">
+          <span class="step-line">x = 198/36</span>
+          <span class="step-line">x = 11/2</span>
+        </div>
+        <div class="final-result"><span class="result-box">x = 5,5</span></div>
+      </div>
+
+      <div class="exercise-card">
+        <div class="exercise-letter">h) <span class="badge">1º grau</span></div>
+        <div class="equation-display" style="margin-bottom: 0.5rem;">49x = 3x - 180</div>
+        <div class="calc-steps">
+          <span class="step-line">49x - 3x = -180</span>
+          <span class="step-line">46x = -180</span>
+          <span class="step-line">x = -180/46</span>
+          <span class="step-line">x = -90/23</span>
+        </div>
+        <div class="final-result"><span class="result-box">x ≈ -3,91</span></div>
+      </div>
+
+    </div>
+
+    <!-- =========================================================
+         PROPRIEDADE DISTRIBUTIVA
+         ========================================================= -->
+    <article class="math-card" style="margin-top: 1.5rem;">
+      <h2 class="section-title">Propriedade Distributiva</h2>
+
+      <div class="step-box">
+        <div class="step-number">Conceito</div>
+        <p style="font-size: 0.9rem;">Multiplicamos o termo de fora por todos os de dentro.</p>
+        <div class="equation-display equation-big">7x(4 + a) = 0</div>
+        <div class="equation-display">7x · 4 + 7x · a = 0</div>
+        <div class="equation-display">28x + 7ax = 0</div>
+      </div>
+
+      <div class="step-box" style="border-left-color: var(--accent-dark);">
+        <div class="step-number">Exemplo:</div>
+        <div class="equation-display">2x² - (4a) × (3b + 5a) = 0</div>
+        <div class="equation-display">2x² - 4a·3b - 4a·5a = 0</div>
+        <div class="equation-display">2x² - 12ab - 20a² = 0</div>
+      </div>
+    </article>
+
+  </main>
+
+  <footer>
+    <p>Conteúdo organizado com carinho</p>
+  </footer>
+
+</body>
+</html>

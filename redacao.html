@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Redação - Meu Espaço</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .lesson-card {
+      background: var(--bg-card);
+      border: 1px solid rgba(184, 74, 106, 0.08);
+      border-radius: var(--radius-card);
+      padding: 2.5rem 3rem;
+      margin-bottom: 2rem;
+      box-shadow: var(--shadow-soft);
+      transition: box-shadow 0.3s ease;
+    }
+
+    .lesson-card:hover {
+      box-shadow: var(--shadow-hover);
+    }
+
+    .date-tag {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--accent-dark);
+      background: var(--accent-soft);
+      padding: 0.3rem 0.8rem;
+      border-radius: 50px;
+      margin-bottom: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    .topic-subtitle {
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: var(--accent-dark);
+      margin: 1.5rem 0 0.6rem 0;
+      text-transform: uppercase;
+    }
+
+    .notes-list {
+      padding-left: 1.2rem;
+      margin-bottom: 1rem;
+    }
+
+    .notes-list li {
+      margin-bottom: 0.6rem;
+      line-height: 1.7;
+      font-size: 1rem;
+      color: var(--text-main);
+    }
+
+    .qa-block {
+      margin-bottom: 1.5rem;
+      padding-left: 0.8rem;
+      border-left: 3px solid var(--accent-primary);
+    }
+
+    /* ESTILIZAÇÃO DAS TABELAS */
+    .table-container {
+      overflow-x: auto;
+      margin-top: 1rem;
+      margin-bottom: 1rem;
+      border-radius: 8px;
+      border: 1px solid var(--border-soft);
+    }
+
+    .custom-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.95rem;
+      text-align: left;
+    }
+
+    .custom-table th, 
+    .custom-table td {
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--border-soft);
+      vertical-align: top;
+    }
+
+    .custom-table th {
+      background-color: var(--accent-soft);
+      color: var(--accent-dark);
+      font-weight: 700;
+      text-transform: uppercase;
+      font-size: 0.85rem;
+      letter-spacing: 0.05em;
+    }
+
+    .custom-table tbody tr:last-child td {
+      border-bottom: none;
+    }
+
+    .custom-table tbody tr:nth-child(even) {
+      background-color: rgba(0, 0, 0, 0.015);
+    }
+
+    .badge-code {
+      display: inline-block;
+      font-weight: 800;
+      color: var(--accent-dark);
+      background: var(--accent-soft);
+      padding: 0.2rem 0.6rem;
+      border-radius: 4px;
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="logo">
+      <video src="seu-video.mp4" class="logo-img" autoplay loop muted playsinline></video>
+      <a href="index.html" class="logo-text">MEU ESPAÇO</a>
+    </div>
+    <div class="menu-container">
+      <button class="menu-btn" id="menuToggle">☰</button>
+      <div class="dropdown-menu" id="dropdownMenu">
+        <span>Menu de Matérias</span>
+        <ul>
+          <li><a href="index.html">Início</a></li>
+          <li><a href="pca.html">PCA</a></li>
+          <li><a href="redacao.html">Redação</a></li>
+          <li><a href="edc.html">Educação Física</a></li>
+          <li><a href="filosofia.html">Filosofia</a></li>
+          <li><a href="geografia.html">Geografia</a></li>
+          <li><a href="historia.html">História</a></li>
+          <li><a href="matematica.html">Matemática Básica</a></li>
+          <li><a href="matematicaa.html">Matemática</a></li>
+        </ul>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="welcome-card">
+      <h1>Aulas de <span class="highlight">Redação</span></h1>
+      <p>Anotações estruturadas sobre dissertação, técnicas de escrita, gramática e gêneros textuais.</p>
+    </div>
+
+    <!-- AULA 27/07 -->
+    <div class="lesson-card">
+      <div class="date-tag">Aula - 27/07/2026</div>
+      <h1>Modelo Dissertativo-Argumentativo & Gramática</h1>
+      
+      <h3 class="topic-subtitle">1. Estrutura do Texto Dissertativo-Argumentativo</h3>
+      <ul class="notes-list">
+        <li><strong>Introdução:</strong> Apresentação clara do tema e da tese a ser defendida.</li>
+        <li><strong>Desenvolvimento:</strong> Divisão argumentativa em D1 (Vantagens) e D2 (Desvantagens).</li>
+        <li><strong>Conclusão:</strong> Elaboração da proposta de intervenção (no modelo ENEM). É essencial evitar parágrafos incompletos ou fragmentados, assim como encerramentos baseados apenas em frases otimistas.</li>
+      </ul>
+
+      <p><strong>Elementos Obrigatórios da Conclusão (Modelo ENEM):</strong></p>
+      <div class="table-container">
+        <table class="custom-table">
+          <thead>
+            <tr>
+              <th style="width: 25%;">Elemento</th>
+              <th>Função na Redação</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="badge-code">AGENTE</span></td>
+              <td>Quem executa a ação (ex: Governo, Mídia, Escola).</td>
+            </tr>
+            <tr>
+              <td><span class="badge-code">AÇÃO</span></td>
+              <td>O que será feito para resolver o problema.</td>
+            </tr>
+            <tr>
+              <td><span class="badge-code">MEIO</span></td>
+              <td>Como a ação será executada (recursos/métodos).</td>
+            </tr>
+            <tr>
+              <td><span class="badge-code">FINALIDADE</span></td>
+              <td>Qual o objetivo ou impacto esperado da proposta.</td>
+            </tr>
+            <tr>
+              <td><span class="badge-code">DETALHAMENTO</span></td>
+              <td>Explicitação extra sobre o agente, ação, meio ou finalidade.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3 class="topic-subtitle">2. Uso dos Sinais de Pontuação</h3>
+      <div class="table-container">
+        <table class="custom-table">
+          <thead>
+            <tr>
+              <th>Função</th>
+              <th>Sinais Utilizados</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Finalizar uma ideia:</strong></td>
+              <td>Ponto Final (.), Ponto de Interrogação (?) e Ponto de Exclamação (!).</td>
+            </tr>
+            <tr>
+              <td><strong>Ideias em construção / continuidade:</strong></td>
+              <td>Vírgula (,), Ponto e Vírgula (;) e Reticências (...).</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3 class="topic-subtitle">3. Regras Gerais de Acentuação Gráfica</h3>
+      <div class="table-container">
+        <table class="custom-table">
+          <thead>
+            <tr>
+              <th>Classificação</th>
+              <th>Regra de Acentuação</th>
+              <th>Exemplos</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Oxítonas</strong></td>
+              <td>Sílaba tônica é a última. Acentuam-se as terminadas em: <em>a(s), e(s), o(s), em, ens</em>.</td>
+              <td>Café, Sofá, Também.</td>
+            </tr>
+            <tr>
+              <td><strong>Paroxítonas</strong></td>
+              <td>Sílaba tônica é a penúltima. Acentuam-se as terminadas em: <em>r, x, n, l, ps, ã(s), ão(s), um(uns), om(ons), is, us e ditongos</em>.</td>
+              <td>Fácil, Caráter, Lápis.</td>
+            </tr>
+            <tr>
+              <td><strong>Proparoxítonas</strong></td>
+              <td>Sílaba tônica é a antepenúltima. <strong>Todas</strong> são acentuadas.</td>
+              <td>Lâmpada, Médico, Música.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- AULA 03/08 -->
+    <div class="lesson-card">
+      <div class="date-tag">Aula - 03/08/2026</div>
+      <h1>Dissertação & Técnica P.A.S (3º Bimestre / PAS-UnB)</h1>
+      <p>A dissertação é a tipologia textual mais cobrada nas provas da UnB (PAS). Para estruturar parágrafos de forma prática e rápida, utiliza-se a técnica <strong>P.A.S</strong>.</p>
+      
+      <div class="table-container">
+        <table class="custom-table">
+          <thead>
+            <tr>
+              <th style="width: 20%;">Etapa</th>
+              <th style="width: 25%;">Conceito</th>
+              <th>Aplicação Prática no Parágrafo</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="badge-code">P</span></td>
+              <td><strong>Problema</strong></td>
+              <td>Encontre e apresente um problema possível atrelado ao tema proposto pela banca.</td>
+            </tr>
+            <tr>
+              <td><span class="badge-code">A</span></td>
+              <td><strong>Agitação</strong></td>
+              <td>Descreva as causas, os desdobramentos e as consequências desse problema.</td>
+            </tr>
+            <tr>
+              <td><span class="badge-code">S</span></td>
+              <td><strong>Solução</strong></td>
+              <td>Proponha ações concretas para resolver ou minimizar o problema apontado.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- AULA 10/08 -->
+    <div class="lesson-card">
+      <div class="date-tag">Aula - 10/08/2026</div>
+      <h1>Estrutura e Formato dos Gêneros Textuais</h1>
+      
+      <h3 class="topic-subtitle">Diretrizes Gerais de Escrita</h3>
+      <ul class="notes-list">
+        <li><strong>Gêneros Solicitados:</strong> Podem ser cobrados dissertação-argumentativa, artigo de opinião, carta, resumo, texto instrucional ou informativo.</li>
+        <li><strong>Limite de Extensão:</strong> Máximo de 30 linhas. Extrapolar ou escrever fora do local designado zera o trecho ou a folha.</li>
+        <li><strong>Abordagem Temática:</strong> Temas frequentemente ligados às obras de referência de cada etapa (PAS 1, 2 ou 3), exigindo uma abordagem mais reflexiva e abstrata que o ENEM tradicional.</li>
+      </ul>
+
+      <h3 class="topic-subtitle">Estrutura do Gênero "Carta"</h3>
+      <p>A carta é composta por partes bem definidas em sua construção:</p>
+      
+      <div class="table-container">
+        <table class="custom-table">
+          <thead>
+            <tr>
+              <th style="width: 25%;">Parte</th>
+              <th>Descrição e Exemplos</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>1. Cabeçalho</strong></td>
+              <td>Local e data em que a carta foi escrita. <em>(Ex: Brasília, 10 de agosto de 2026)</em></td>
+            </tr>
+            <tr>
+              <td><strong>2. Vocativo</strong></td>
+              <td>Forma de tratamento ao destinatário. <em>(Ex: Querida..., Prezado..., Senhora...)</em></td>
+            </tr>
+            <tr>
+              <td><strong>3. Corpo do Texto</strong></td>
+              <td>Mensagem principal dividida em Introdução, Desenvolvimento e Conclusão.</td>
+            </tr>
+            <tr>
+              <td><strong>4. Despedida</strong></td>
+              <td>Frase curta de encerramento. <em>(Ex: "Com carinho" para amigos, "Atenciosamente" para trabalho)</em></td>
+            </tr>
+            <tr>
+              <td><strong>5. Assinatura</strong></td>
+              <td>Nome de quem escreveu a carta.</td>
+            </tr>
+            <tr>
+              <td><strong>6. P.S. (Pós-Escrito)</strong></td>
+              <td>Informação extra adicionada ao final da carta.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- TIPOLOGIAS X GÊNEROS -->
+    <div class="lesson-card">
+      <div class="date-tag">Resumo Teórico</div>
+      <h1>Tipologia Textual vs. Gênero Textual</h1>
+      
+      <div class="table-container">
+        <table class="custom-table">
+          <thead>
+            <tr>
+              <th style="width: 45%;">Tipologia Textual (Estrutura / Organização)</th>
+              <th style="width: 55%;">Gênero Textual (Função Social)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>1. Dissertativa:</strong>
+                <br>• Argumentativa (opinião, defesa de tese)
+                <br>• Expositiva (caráter informativo)
+              </td>
+              <td>
+                • Artigo de opinião, Redação acadêmica.
+                <br>• Notícia, Reportagem.
+              </td>
+            </tr>
+            <tr>
+              <td><strong>2. Narrativa:</strong>
+                <br>• Relato focado no mnemônico <span class="badge-code">P.E.N.T.E</span> (Personagem, Enredo, Narrador, Tempo, Espaço).
+              </td>
+              <td>• Romance, Novela, Conto.</td>
+            </tr>
+            <tr>
+              <td><strong>3. Descritiva:</strong>
+                <br>• Foco na construção de imagens e detalhes visuais.
+              </td>
+              <td>• Diário, Cardápio, Anúncio.</td>
+            </tr>
+            <tr>
+              <td><strong>4. Injuntiva / Instrucional:</strong>
+                <br>• Uso do infinitivo ou imperativo; orientação passo a passo.
+              </td>
+              <td>• Receita, Bula de remédio, Manual.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- ATIVIDADE PRÁTICA -->
+    <div class="lesson-card">
+      <div class="date-tag">Atividade Avaliativa</div>
+      <h1>Proposta de Redação</h1>
+      <div class="qa-block">
+        <p><strong>Tema:</strong> Elaboração de uma carta aberta direcionada ao Presidente da Argentina, Sr. Javier Milei, abordando o conflito/relação diplomática com o Governo Lula.</p>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <p>© 2026 Meu Espaço. Todos os direitos reservados.</p>
+  </footer>
+
+  <script>
+    const menuBtn = document.getElementById('menuToggle');
+    const dropdownMenu = document.getElementById('dropdownMenu');
+
+    menuBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      dropdownMenu.classList.toggle('active');
+    });
+
+    document.addEventListener('click', (e) => {
+      if (!dropdownMenu.contains(e.target) && e.target !== menuBtn) {
+        dropdownMenu.classList.remove('active');
+      }
+    });
+  </script>
+</body>
+</html>
