@@ -1,19 +1,82 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Sociologia</title>
   <link rel="stylesheet" href="styles.css">
+  <style>
+    .question-card {
+      background-color: var(--bg-card, #fff);
+      border: 2px solid var(--border-strong, #ccc);
+      padding: 2rem;
+      margin-bottom: 2rem;
+      box-shadow: var(--shadow-flat, 0 2px 4px rgba(0,0,0,0.1));
+    }
+
+    .question-title {
+      font-weight: 800;
+      color: var(--accent-dark, #222);
+      margin-bottom: 1rem;
+      text-transform: uppercase;
+      font-size: 1.2rem;
+      border-bottom: 2px solid var(--accent-warm, #f0a500);
+      padding-bottom: 0.5rem;
+      display: inline-block;
+    }
+
+    .date-tag {
+      font-size: 0.85rem;
+      color: var(--text-muted, #666);
+      margin-bottom: 1rem;
+      font-weight: 600;
+    }
+
+    .question-text {
+      font-size: 1.05rem;
+      line-height: 1.8;
+      color: var(--text-main, #333);
+    }
+
+    .answers-list {
+      margin-top: 1rem;
+      padding-left: 1.2rem;
+    }
+
+    .answers-list li {
+      margin-bottom: 0.8rem;
+      line-height: 1.6;
+    }
+
+    .theory-box {
+      background-color: #f9f9f9;
+      border-left: 4px solid var(--accent-dark, #333);
+      padding: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .theory-box ul {
+      margin: 0.5rem 0 0 1.2rem;
+      padding: 0;
+    }
+
+    .section-subtitle {
+      font-weight: 700;
+      font-size: 1.1rem;
+      margin-top: 1.2rem;
+      margin-bottom: 0.5rem;
+      color: var(--accent-dark, #222);
+    }
+  </style>
 </head>
 <body>
 
   <header>
     <div class="logo">
-      <img src="Fofo.gif" class="logo-img" alt="Logo">
+      <video src="espiral.mp4" class="logo-img" autoplay loop muted playsinline></video>
       <span>SOCIOLOGIA</span>
     </div>
-
+    
     <div class="menu-container">
       <button class="menu-btn" id="menuBtn" aria-label="Abrir Menu">&#9776;</button>
       
@@ -22,129 +85,167 @@
         <ul>
           <li><a href="index.html">Início</a></li>
           <li><a href="pca.html">PCA</a></li>
-          <li><a href="redacao.html">Redação</a></li>
-          <li><a href="edc.html">Educação Física</a></li>
+          <li><a href="sociologia.html">Sociologia</a></li>
+          <li><a href="portugues.html">Português</a></li>
           <li><a href="filosofia.html">Filosofia</a></li>
           <li><a href="geografia.html">Geografia</a></li>
+          <li><a href="redacao.html">Redação</a></li>
           <li><a href="historia.html">História</a></li>
-          <li><a href="matematica.html">Matemática Básica</a></li>
-          <li><a href="matematicaa.html">Matemática</a></li>
-          <li><a href="sociologia.html">Sociologia</a></li>
         </ul>
       </nav>
     </div>
   </header>
 
+  <script>
+    const menuBtn = document.getElementById('menuBtn');
+    const dropdownMenu = document.getElementById('dropdownMenu');
+
+    menuBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      dropdownMenu.classList.toggle('active');
+    });
+
+    document.addEventListener('click', () => {
+      dropdownMenu.classList.remove('active');
+    });
+  </script>
+
   <main>
     <section class="welcome-card">
-      <h1>Sociologia <span class="emoji">📚</span></h1>
-      <p>Anotações, conceitos fundamentais e atividades da disciplina de <span class="highlight-text">Sociologia</span>.</p>
+      <h1>Atividades de Sociologia</h1>
+      <p>Introdução às Ciências Sociais, divisão disciplinar, Teocentrismo vs. Antropocentrismo e exercícios do livro.</p>
     </section>
 
-    <section class="welcome-card">
-      <h2>1. O que é Sociologia e o que ela estuda?</h2>
-      <p>É a ciência que estuda a <strong>sociedade</strong>.</p>
-
-      <div class="poem">
-        <p><strong>Ciências Sociais – Principais áreas:</strong></p>
-        <p>• <strong>Sociologia:</strong> Sociedade moderna / urbana.</p>
-        <p>• <strong>Antropologia:</strong> Tribos / "primitivas".</p>
-        <p>• <strong>Ciência Política:</strong> Relações de poder e estado.</p>
-      </div>
-
-      <p>➜ <i>"O ser humano é um animal social."</i></p>
-
-      <div class="poem">
-        <p>• <strong>Economia:</strong> É a ciência que estuda a alocação de recursos escassos.</p>
-      </div>
-
-      <p class="highlight-text" style="margin-top: 1.5rem;">Divisão Disciplinar:</p>
-      <p>Defina: 1) Sociologia | 2) Antropologia | 3) Ciência Política</p>
-    </section>
-
-    <section class="welcome-card">
-      <h2>Contexto Histórico do Surgimento da Sociologia</h2>
-      <p>Criada no século XIX com o objetivo de oferecer explicações sobre as diversas transformações pelas quais passou a Europa na transição do feudalismo para o capitalismo. Esse processo tem como marco histórico a chamada <strong>Dupla Revolução</strong>:</p>
+    <!-- Bloco 1: Introdução às Ciências Sociais -->
+    <div class="question-card">
+      <div class="date-tag">AULA DE 30/07/2026</div>
+      <div class="question-title">Introdução às Ciências Sociais</div>
       
-      <div class="poem">
-        <p>🏭 <strong>Revolução Industrial</strong></p>
-        <p>📜 <strong>Revolução Francesa</strong></p>
+      <p class="question-text">
+        <strong>O que é a sociologia e o que ela estuda?</strong><br>
+        É a ciência que estuda a sociedade.
+      </p>
+
+      <div class="theory-box">
+        <p><strong>Ciências Sociais:</strong> Estudo do homem em sociedade.</p>
+        <ul>
+          <li><strong>Sociologia:</strong> Sociedade e modernidade.</li>
+          <li><strong>Antropologia:</strong> Tribos e minorias.</li>
+          <li><strong>Ciência Política:</strong> Relações de poder e estado.</li>
+        </ul>
+        <p style="margin-top: 0.8rem;"><strong>Economia:</strong> É a ciência que estuda a alocação de recursos escassos.</p>
       </div>
 
-      <p>Inspirada nos avanços que as ciências naturais e técnicas alcançaram naquele período.</p>
-    </section>
+      <div class="section-subtitle">Contexto Histórico do Surgimento da Sociologia</div>
+      <p class="question-text">
+        Criação no século XIX com o objetivo de oferecer explicações sobre as diversas transformações pelas quais passou a Europa na transição do feudalismo para o capitalismo. Esse processo tem como marco histórico a chamada <strong>Dupla Revolução</strong>:
+      </p>
+      <ul class="answers-list">
+        <li>Revolução Industrial</li>
+        <li>Revolução Francesa</li>
+      </ul>
+      <p class="question-text" style="font-style: italic; margin-top: 0.5rem;">
+        *Inspirada nos avanços que as ciências naturais e técnicas alcançaram naquele período.
+      </p>
 
-    <section class="welcome-card">
-      <h2>Biologia x Psicologia x Consciência Individual</h2>
-      <p>Existem determinações do comportamento humano que não têm origem orgânica/biológica, nem fundamentam na própria convivência entre os seres humanos na vida em sociedade, ou seja, são sociais.</p>
+      <div class="section-subtitle">Sociologia vs. Psicologia</div>
+      <p class="question-text">
+        A Psicologia foca na consciência individual ou psique. Já a Sociologia observa que existem determinantes do comportamento humano que não têm origem orgânica ou biológica, mas se fundamentam na própria convivência entre os seres humanos na vida em sociedade, ou seja, são sociais.
+      </p>
 
-      <div class="poem">
-        <p>• <strong>Fatos que a cultura influencia:</strong> casamento, trabalho, inteligência, vida social.</p>
-        <p>• <strong>Antropologia:</strong> etnocentrismo, aculturação, raça e etnia, estado, poder, democracia.</p>
-      </div>
+      <div class="section-subtitle">Divisão Disciplinar</div>
+      <ul class="answers-list">
+        <li><strong>Sociologia:</strong> Estuda a sociedade, as relações entre as pessoas e como grupos e instituições funcionam.</li>
+        <li><strong>Antropologia:</strong> Estuda o ser humano e suas culturas, costumes, crenças e formas de viver em diferentes sociedades.</li>
+        <li><strong>Ciência Política:</strong> Estuda o poder e a política dentro da sociedade, incluindo governos, estado, eleições e participação por partidos.</li>
+      </ul>
+    </div>
 
-      <h3 style="color: var(--accent-dark); margin: 1.5rem 0 0.8rem 0;">Divisão Disciplinar</h3>
-      <p>• <strong>Sociologia:</strong> Estuda a sociedade, as relações entre as pessoas e como grupos e instituições funcionam.</p>
-      <p>• <strong>Antropologia:</strong> Estuda o ser humano e suas culturas, costumes, crenças e formas de viver em diferentes sociedades.</p>
-      <p>• <strong>Ciência Política:</strong> Estuda o poder e a política dentro da sociedade, incluindo governos, estado, eleições e participação de partidos.</p>
-    </section>
-
-    <section class="welcome-card">
-      <h2>Em Relação à Organização Política</h2>
-
-      <h3 style="color: var(--accent-dark); margin-top: 1rem;">Feudalismo</h3>
-      <p>• Senhores feudais e a Igreja dominavam os servos e camponeses.</p>
-      <p>• Ausência de estados e nações.</p>
-      <p>• As teorias que justificavam o poder dos senhores feudais e da Igreja se baseavam na <i>"vontade de Deus"</i>.</p>
-
-      <h3 style="color: var(--accent-dark); margin-top: 1rem;">Capitalismo</h3>
-      <p>• Surgem os estados nacionais patrocinados principalmente pela burguesia.</p>
-      <p>• Aparecimento do rei/monarca e da figura de Estado.</p>
-      <p>• Surgem as teorias políticas que sustentavam a ideia de Estado Nacional.</p>
-
-      <h3 style="color: var(--accent-dark); margin-top: 1rem;">Teocentrismo</h3>
-      <p>• A verdade estava na Bíblia e na autoridade da Igreja.</p>
-      <p>• A religião explicava tudo; a realidade era explicada pela vontade de Deus.</p>
-      <p>• Qualquer mudança era contrária à vontade de Deus.</p>
-      <p>• O conhecimento significava contemplar a vontade de Deus.</p>
-
-      <h3 style="color: var(--accent-dark); margin-top: 1rem;">Antropocentrismo</h3>
-      <p>• A verdade obtida pela razão e pelos métodos científicos.</p>
-      <p>• A realidade explicada pelo que acontecia na terra entre o homem.</p>
-      <p>• O progresso passou a ser o objetivo humano.</p>
-      <p>• Conhecimento significava transformar a natureza, dominá-la.</p>
-      <p>• Baseados no Iluminismo, surgem as teorias políticas.</p>
-    </section>
-
-    <section class="welcome-card">
-      <h2>Atividade: Práxis Social</h2>
-      <p><strong>Questão:</strong> Desnaturalizar a realidade social significa compreender que as formações e instituições sociais são produtos da história e não um dado de uma natureza inata aos seres humanos. Quais as consequências dessa perspectiva em nossas práxis políticas e cotidianas?</p>
+    <!-- Bloco 2: Organização Política, Teocentrismo e Antropocentrismo -->
+    <div class="question-card">
+      <div class="date-tag">AULA DE 13/08/2026</div>
+      <div class="question-title">Sociologia e Organização Política</div>
       
-      <div class="poem">
-        <p><strong>Resposta:</strong> Desnaturalizar a realidade social é entender que muitas coisas que consideramos "normais" na sociedade foram criadas ao longo do tempo e podem mudar. Isso faz a gente questionar mais o que acontece ao nosso redor, principalmente situações de desigualdade e preconceito. No dia a dia, podemos deixar de aceitar certas coisas simplesmente porque "sempre foi assim" e tentar contribuir para uma sociedade mais justa e igualitária.</p>
+      <div class="section-subtitle">Feudalismo</div>
+      <ul class="answers-list">
+        <li>Senhores feudais e a Igreja dominavam os servos e camponeses.</li>
+        <li>Ausência de Estados e nações.</li>
+        <li>As teorias que justificavam o poder dos senhores feudais e da Igreja se baseavam na "vontade de Deus".</li>
+      </ul>
+
+      <div class="section-subtitle">Capitalismo</div>
+      <ul class="answers-list">
+        <li>Surgem os Estados nacionais patrocinados principalmente pela burguesia.</li>
+        <li>Aparecimento das nações e da figura do Estado.</li>
+        <li>Surgem as teorias políticas que sustentavam a ideia do Estado-nacional.</li>
+      </ul>
+
+      <div class="section-subtitle">Teocentrismo</div>
+      <ul class="answers-list">
+        <li>A verdade estava na Bíblia e na autoridade da Igreja.</li>
+        <li>A religião era tudo; a realidade era explicada pela vontade de Deus.</li>
+        <li>Qualquer mudança era contrária à vontade de Deus.</li>
+        <li>O conhecimento significava contemplar a vontade de Deus.</li>
+      </ul>
+
+      <div class="section-subtitle">Antropocentrismo</div>
+      <ul class="answers-list">
+        <li>A verdade é obtida pela razão e pelos métodos científicos.</li>
+        <li>A realidade é explicada pelo que acontecia na terra e entre os homens.</li>
+        <li>O progresso passou a ser o objetivo humano.</li>
+        <li>Conhecimento significava transformar a natureza e dominá-la.</li>
+        <li>Baseados no Iluminismo, surgem as teorias políticas.</li>
+      </ul>
+
+      <div class="section-subtitle">Atividade de Fixação</div>
+      <p class="question-text">
+        <strong>1 - Desnaturalizar a realidade social significa compreender que as formações e instituições sociais são produtos da história e não um dado de uma natureza inata aos seres humanos. Quais as consequências dessa perspectiva em nossas práxis políticas e cotidianas?</strong>
+      </p>
+      <div class="theory-box">
+        <p>
+          Desnaturalizar a realidade social é entender que muitas coisas que consideramos "normais" na sociedade foram criadas ao longo do tempo e podem mudar. Isso faz a gente questionar mais o que acontece ao nosso redor, principalmente situações de desigualdade e preconceito. No dia a dia, podemos deixar de aceitar certas coisas simplesmente porque "sempre foi assim" e tentar contribuir para uma sociedade mais justa e igualitária.
+        </p>
       </div>
-    </section>
+    </div>
 
-    <section class="welcome-card">
-      <h2>Atividade do Capítulo 17</h2>
+    <!-- Bloco 3: Exercícios do Livro (Atividade do Capítulo 7) -->
+    <div class="question-card">
+      <div class="date-tag">ATIVIDADE DE 20/08/2026</div>
+      <div class="question-title">Atividade do Capítulo 7</div>
+      
+      <div class="section-subtitle">Página 183</div>
+      <ol class="answers-list">
+        <li>
+          Na visão de Marx, a tecnologia aumenta a capacidade de produzir alimentos, mas no capitalismo ela busca o lucro e não o bem-estar social. Isso gera uma contradição: a produção de alimentos cresce absurdamente, mas a fome e a concentração de terras continuam existindo.
+        </li>
+        <li>
+          <strong>Precarização do trabalho:</strong> Aumento do trabalho por aplicativos (uberização) e substituição de empregos pela automação.<br>
+          <strong>Concentração de dados:</strong> Maior acesso à informação, mas com o controle concentrado nas mãos de poucas grandes empresas de tecnologia (Big Techs).
+        </li>
+      </ol>
 
-      <h3 style="color: var(--accent-dark); margin-top: 1rem;">Pág. 183</h3>
-      <p><strong>1.</strong> Na visão de Marx, a tecnologia aumenta a capacidade de produzir alimentos, mas no capitalismo ela busca o lucro e não o bem-estar social. Isso gera uma contradição: a produção de alimentos cresce absurdamente, mas a fome e a concentração de terras continuam existindo.</p>
-      <p><strong>2. Precarização do Trabalho:</strong> Aumento do trabalho por aplicativos (uberização) e substituição de empregos pela automação.</p>
-      <p><strong>3. Concentração de Dados:</strong> Maior acesso à informação, mas com o controle concentrado nas mãos de poucas grandes empresas de tecnologia (Big Techs).</p>
+      <div class="section-subtitle">Página 185</div>
+      <ol class="answers-list">
+        <li>
+          Trabalhadores da indústria têxtil (homens e mulheres) operando as máquinas de fiação e tecelagem dentro de uma fábrica.
+        </li>
+        <li>
+          É o período de transição da produção artesanal para o sistema fabril mecânico, marcada pelo uso de novas tecnologias (como máquinas a vapor e o tear mecânico), consolidação do capitalismo e surgimento da classe trabalhadora urbana.
+        </li>
+        <li>
+          A gravura mostra a intervenção humana na natureza ao transformar matéria-prima (o algodão) através de máquinas. Isso altera a história da natureza (exploração de recursos) e a história dos seres humanos.
+        </li>
+      </ol>
 
-      <h3 style="color: var(--accent-dark); margin-top: 1.5rem;">Pág. 185</h3>
-      <p><strong>1.</strong> Trabalhadores da indústria têxtil (homens e mulheres) operando as máquinas de fiação e tecelagem dentro de uma fábrica.</p>
-      <p><strong>2.</strong> Foi o período de transição da produção artesanal para o sistema fabril mecânico, marcado pelo uso de novas tecnologias (como máquinas a vapor e o tear mecânico), consolidação do capitalismo e surgimento da classe trabalhadora urbana.</p>
-
-      <h3 style="color: var(--accent-dark); margin-top: 1.5rem;">Pág. 186</h3>
-      <p><strong>1.</strong> Para garantir alimentos, não basta existir comida na natureza; a sociedade precisa criar regras, divisão do trabalho e formas de distribuição. Ou seja, a garantia do alimento depende de como a sociedade se organiza.</p>
-      <p><strong>2.</strong> No sistema capitalista, a comida é produzida como mercadoria para gerar lucro. Assim, o acesso aos alimentos depende do dinheiro, do poder de compra das pessoas, e não da necessidade real de cada pessoa.</p>
-      <p><strong>3.</strong> A gravura mostra a intervenção humana na natureza ao transformar matéria-prima (o algodão) através de máquinas. Isso altera a história da natureza (exploração da recursos) e a história dos seres humanos.</p>
-    </section>
-
-    <div class="buttons-container" style="margin-bottom: 2.5rem;">
-      <a href="index.html" class="btn btn-outline">← Voltar ao Início</a>
+      <div class="section-subtitle">Página 186</div>
+      <ol class="answers-list">
+        <li>
+          Para garantir alimentos, não basta existir comida na natureza; a sociedade precisa criar regras, divisão do trabalho e formas de distribuição. Ou seja, a garantia de alimento depende de como a sociedade se organiza.
+        </li>
+        <li>
+          No sistema capitalista, a comida é produzida como mercadoria para gerar lucro. Assim, o acesso aos alimentos depende do dinheiro e do poder de compra das pessoas, e não da necessidade real de cada pessoa.
+        </li>
+      </ol>
     </div>
   </main>
 
@@ -152,21 +253,6 @@
     <p>&copy; 𝒜𝓉𝓊𝓁𝒾𝒶𝓏𝒶𝒹ℴ</p>
   </footer>
 
-  <script>
-    const menuBtn = document.getElementById('menuBtn');
-    const dropdownMenu = document.getElementById('dropdownMenu');
-
-    // Abre e fecha o menu ao clicar no botão
-    menuBtn.addEventListener('click', (e) => {
-      e.stopPropagation();
-      dropdownMenu.classList.toggle('active');
-    });
-
-    // Fecha o menu ao clicar fora dele
-    document.addEventListener('click', () => {
-      dropdownMenu.classList.remove('active');
-    });
-  </script>
-
 </body>
 </html>
+
