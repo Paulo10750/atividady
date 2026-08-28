@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
@@ -254,7 +254,7 @@
       background: var(--bg-page);
     }
 
-    /* Sinais lado a lado */
+    /* Sinais lado a lado com imagens */
     .sinais-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -267,6 +267,9 @@
       border-radius: 16px !important;
       padding: 1rem;
       text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
 
     .sinais-grid .item .titulo {
@@ -275,6 +278,7 @@
       font-size: 0.8rem;
       text-transform: uppercase;
       letter-spacing: 0.05em;
+      margin-bottom: 0.3rem;
     }
 
     .sinais-grid .item .simbolo {
@@ -288,6 +292,121 @@
       font-size: 0.8rem;
       font-weight: 600;
       color: var(--accent-dark);
+    }
+
+    /* Estilo para as imagens de variação de sinal */
+    .sinal-imagem {
+      width: 100%;
+      max-width: 180px;
+      height: auto;
+      border-radius: 16px !important;
+      border: 3px solid var(--accent-primary);
+      margin: 0.3rem 0;
+      display: block;
+      background: #fff;
+      box-shadow: var(--shadow-soft);
+      cursor: pointer;
+      transition: transform 0.2s ease;
+    }
+
+    .sinal-imagem:active {
+      transform: scale(0.95);
+    }
+
+    .sinal-imagem.dark-border {
+      border-color: var(--accent-dark);
+    }
+
+    /* =========================================================
+       LIGHTBOX - VISUALIZAÇÃO AMPLIADA DE IMAGENS
+       ========================================================= */
+    .lightbox-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.92);
+      z-index: 9999;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      box-sizing: border-box;
+      animation: fadeIn 0.25s ease;
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+    }
+
+    .lightbox-overlay.active {
+      display: flex;
+    }
+
+    .lightbox-overlay .lightbox-content {
+      position: relative;
+      max-width: 95vw;
+      max-height: 90vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .lightbox-overlay .lightbox-content img {
+      max-width: 100%;
+      max-height: 85vh;
+      width: auto;
+      height: auto;
+      border-radius: 20px !important;
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.7);
+      border: 3px solid rgba(255, 255, 255, 0.15);
+      object-fit: contain;
+      background: #fff;
+      padding: 8px;
+      box-sizing: border-box;
+    }
+
+    .lightbox-overlay .close-lightbox {
+      position: fixed;
+      top: 20px;
+      right: 25px;
+      background: rgba(255, 255, 255, 0.15);
+      color: #fff;
+      border: none;
+      font-size: 2.2rem;
+      width: 55px;
+      height: 55px;
+      border-radius: 50% !important;
+      cursor: pointer;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      backdrop-filter: blur(5px);
+      -webkit-backdrop-filter: blur(5px);
+      border: 2px solid rgba(255, 255, 255, 0.2);
+      transition: all 0.2s ease;
+      font-weight: 300;
+      line-height: 1;
+      z-index: 10000;
+    }
+
+    .lightbox-overlay .close-lightbox:active {
+      transform: scale(0.9);
+      background: rgba(255, 255, 255, 0.3);
+    }
+
+    .lightbox-overlay .close-lightbox:hover {
+      background: rgba(255, 255, 255, 0.25);
+    }
+
+    /* Acessibilidade: foco visível */
+    .lightbox-overlay .close-lightbox:focus-visible {
+      outline: 3px solid #fff;
+      outline-offset: 3px;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.95); }
+      to { opacity: 1; transform: scale(1); }
     }
 
     /* Ajustes para telas pequenas */
@@ -327,10 +446,43 @@
 
       .sinais-grid {
         grid-template-columns: 1fr;
+        gap: 1.2rem;
+      }
+
+      .sinal-imagem {
+        max-width: 150px;
       }
 
       .section-title {
         font-size: 1rem;
+      }
+
+      .lightbox-overlay .close-lightbox {
+        top: 15px;
+        right: 15px;
+        width: 48px;
+        height: 48px;
+        font-size: 1.8rem;
+      }
+
+      .lightbox-overlay .lightbox-content img {
+        max-height: 75vh;
+        padding: 5px;
+      }
+    }
+
+    /* Para telas muito pequenas */
+    @media (max-width: 360px) {
+      .sinal-imagem {
+        max-width: 120px;
+      }
+
+      .lightbox-overlay .close-lightbox {
+        width: 42px;
+        height: 42px;
+        font-size: 1.5rem;
+        top: 12px;
+        right: 12px;
       }
     }
   </style>
@@ -338,10 +490,10 @@
 <body>
 
   <header>
-    <div class="logo">
-      <video src="espiral.mp4" class="logo-img" autoplay loop muted playsinline></video>
-      <span>MATEMÁTICA</span>
-    </div>
+     <div class="logo">
+  <img src="Fofo.gif" class="logo-img" alt="Logo">
+  <span>Matemática</span>
+</div>
     
     <div class="menu-container">
       <button class="menu-btn" id="menuBtn" aria-label="Abrir Menu">&#9776;</button>
@@ -377,7 +529,6 @@
   </script>
 
   <main>
-    <!-- CABEÇALHO COM DATA -->
     <section class="welcome-card">
       <div class="date-badge">
         <span id="currentDate"></span>
@@ -394,18 +545,14 @@
       document.getElementById('currentDate').textContent = hoje.toLocaleDateString('pt-BR', options);
     </script>
 
-    <!-- =========================================================
-         TEORIA: SENO E COSSENO
-         DATA DA IMAGEM: 16/08/2026
-         ========================================================= -->
     <article class="math-card">
       <div class="date-badge dark">
-        Conteúdo: 16/08/2026
+        Conteúdo: 29/07/2026
       </div>
-      <h2 class="section-title">Seno e Cosseno no Círculo Trigonométrico</h2>
+      <h2 class="section-title">Seno e Cosseno de um arco Trigonométrico</h2>
 
       <p style="font-size: 0.95rem;">
-        Dado um arco trigonométrico <strong>AM</strong> de medida <strong>x</strong>, chamamos de:
+        Dado um arco trigonométrico <strong>AM</strong> de medida, chama-se cosseno e seno de <strong>x</strong> a abscissa e a ordenada do ponto <strong>M</strong>, respectivamente.
       </p>
 
       <div class="step-box">
@@ -419,8 +566,12 @@
       </div>
 
       <div class="step-box dark">
-        <div class="step-number">Valores Notáveis</div>
-        <p style="font-size: 0.85rem; font-weight: 600; margin-bottom: 0.5rem;">Como o raio da circunferência trigonométrica é unitário (medida = 1):</p>
+        <div class="step-number">Exemplo - Valores notáveis.</div>
+        <p style="font-size: 0.85rem; font-weight: 600; margin-bottom: 0.5rem;">Como o raio da circunferência trigonométrica é unitário (medida = 1), as coordenadas dos pontos A, B, A' e B' são as indicadas abaixo:</p>
+          <img src="A.png" 
+               alt="Variação do sinal do Seno no círculo trigonométrico" 
+               class="sinal-imagem" 
+               loading="lazy">
         
         <div class="valores-grid">
           <div class="col">
@@ -443,26 +594,23 @@
       </div>
     </article>
 
-    <!-- =========================================================
-         VARIAÇÃO DE SINAIS
-         DATA DA IMAGEM: 16/08/2026
-         ========================================================= -->
     <article class="math-card">
-      <div class="date-badge dark">
-        Conteúdo: 16/08/2026
-      </div>
       <h2 class="section-title">Variação de Sinais</h2>
 
       <div class="sinais-grid">
         <div class="item">
           <div class="titulo">Seno</div>
-          <div class="simbolo">+ / -</div>
-          <div class="desc">Variação no círculo</div>
+          <img src="B.png" 
+               alt="Variação do sinal do Seno no círculo trigonométrico" 
+               class="sinal-imagem" 
+               loading="lazy">
         </div>
         <div class="item">
           <div class="titulo">Cosseno</div>
-          <div class="simbolo">+ / -</div>
-          <div class="desc">Variação no círculo</div>
+          <img src="C.png" 
+               alt="Variação do sinal do Cosseno no círculo trigonométrico" 
+               class="sinal-imagem dark-border" 
+               loading="lazy">
         </div>
       </div>
 
@@ -472,45 +620,34 @@
         <div class="equation-display equation-block">
           E = (sen 180° + cos 180° - sen 270°) / (sen 90° + cos 360°)
         </div>
-        <div style="margin-top: 0.5rem; font-size: 0.9rem;">
-          <span class="step-line">sen 180° = 0</span>
-          <span class="step-line">cos 180° = -1</span>
-          <span class="step-line">sen 270° = -1</span>
-          <span class="step-line">sen 90° = 1</span>
-          <span class="step-line">cos 360° = 1</span>
-        </div>
         <div style="margin-top: 0.5rem; font-size: 1rem; font-weight: 700; color: var(--accent-dark);">
-          E = (0 + (-1) - (-1)) / (1 + 1) = 0 / 2 = <span style="background: var(--accent-primary); color: #fff; padding: 0.1rem 0.8rem; border-radius: 50px;">0</span>
+          E = (0 + (-1) - (-1)) / (1 + 1)<br>
+          E = (-1 + 1) / 2 = 0 / 2 = <span style="background: var(--accent-primary); color: #fff; padding: 0.1rem 0.8rem; border-radius: 50px;">0</span>
         </div>
       </div>
     </article>
 
-    <!-- =========================================================
-         EXERCÍCIOS - CÍRCULO TRIGONOMÉTRICO
-         DATA DA IMAGEM: 16/08/2026
-         ========================================================= -->
     <article class="math-card">
       <div class="date-badge dark">
-        Exercícios: 16/08/2026
+        Exercícios: 31/07/2026
       </div>
-      <h2 class="section-title">Exercícios - Círculo Trigonométrico</h2>
+      <h2 class="section-title">Exercícios do livro - Círculo Trigonométrico - Pág:82 quest: 21 e 22</h2>
 
       <div class="exercise-grid">
 
-        <!-- Questão 21 -->
         <div class="exercise-card">
-          <div class="exercise-letter">21) <span class="badge">Valores</span></div>
+          <div class="exercise-letter">questão 21 - Observe a circunferência e calcule: <span class="badge">Valores</span></div>
           
           <div style="margin-bottom: 0.8rem;">
-            <p style="font-size: 0.9rem; font-weight: 600;">a) cos θ = sen θ</p>
+            <p style="font-size: 0.9rem; font-weight: 600;">a) cos θ e sen θ (para θ = 0)</p>
             <div style="display: flex; flex-wrap: wrap; gap: 0.5rem; font-family: 'Courier New', monospace; font-size: 0.9rem;">
-              <span style="background: var(--bg-page); padding: 0.1rem 0.6rem; border-radius: 8px;">cos θ = 1</span>
-              <span style="background: var(--bg-page); padding: 0.1rem 0.6rem; border-radius: 8px;">sen θ = 0</span>
+              <span style="background: var(--bg-page); padding: 0.1rem 0.6rem; border-radius: 8px;">cos 0 = 1</span>
+              <span style="background: var(--bg-page); padding: 0.1rem 0.6rem; border-radius: 8px;">sen 0 = 0</span>
             </div>
           </div>
 
           <div style="margin-bottom: 0.8rem;">
-            <p style="font-size: 0.9rem; font-weight: 600;">b) cos (π/2)</p>
+            <p style="font-size: 0.9rem; font-weight: 600;">b) cos (π/2) e sen (π/2) </p>
             <div style="display: flex; flex-wrap: wrap; gap: 0.5rem; font-family: 'Courier New', monospace; font-size: 0.9rem;">
               <span style="background: var(--bg-page); padding: 0.1rem 0.6rem; border-radius: 8px;">cos (π/2) = 0</span>
               <span style="background: var(--bg-page); padding: 0.1rem 0.6rem; border-radius: 8px;">sen (π/2) = 1</span>
@@ -518,7 +655,7 @@
           </div>
 
           <div style="margin-bottom: 0.8rem;">
-            <p style="font-size: 0.9rem; font-weight: 600;">c) cos π</p>
+            <p style="font-size: 0.9rem; font-weight: 600;">c) cos π e sen π </p>
             <div style="display: flex; flex-wrap: wrap; gap: 0.5rem; font-family: 'Courier New', monospace; font-size: 0.9rem;">
               <span style="background: var(--bg-page); padding: 0.1rem 0.6rem; border-radius: 8px;">cos π = -1</span>
               <span style="background: var(--bg-page); padding: 0.1rem 0.6rem; border-radius: 8px;">sen π = 0</span>
@@ -526,15 +663,15 @@
           </div>
 
           <div style="margin-bottom: 0.8rem;">
-            <p style="font-size: 0.9rem; font-weight: 600;">d) cos 3π = sen 3π</p>
+            <p style="font-size: 0.9rem; font-weight: 600;">d) cos (3π/2) e sen (3π/2)</p>
             <div style="display: flex; flex-wrap: wrap; gap: 0.5rem; font-family: 'Courier New', monospace; font-size: 0.9rem;">
-              <span style="background: var(--bg-page); padding: 0.1rem 0.6rem; border-radius: 8px;">cos 3π = 0</span>
-              <span style="background: var(--bg-page); padding: 0.1rem 0.6rem; border-radius: 8px;">sen 3π = -1</span>
+              <span style="background: var(--bg-page); padding: 0.1rem 0.6rem; border-radius: 8px;">cos (3π/2) = 0</span>
+              <span style="background: var(--bg-page); padding: 0.1rem 0.6rem; border-radius: 8px;">sen (3π/2) = -1</span>
             </div>
           </div>
 
           <div>
-            <p style="font-size: 0.9rem; font-weight: 600;">e) cos 2π = sen 2π</p>
+            <p style="font-size: 0.9rem; font-weight: 600;">e) cos 2π e sen 2π</p>
             <div style="display: flex; flex-wrap: wrap; gap: 0.5rem; font-family: 'Courier New', monospace; font-size: 0.9rem;">
               <span style="background: var(--bg-page); padding: 0.1rem 0.6rem; border-radius: 8px;">cos 2π = 1</span>
               <span style="background: var(--bg-page); padding: 0.1rem 0.6rem; border-radius: 8px;">sen 2π = 0</span>
@@ -542,11 +679,10 @@
           </div>
         </div>
 
-        <!-- Questão 22 -->
         <div class="exercise-card">
-          <div class="exercise-letter">22) <span class="badge">Valor Numérico</span></div>
+          <div class="exercise-letter">22 - O valor numérico da expressão: <span class="badge">Valor Numérico</span></div>
           <p style="font-size: 0.9rem; font-weight: 600; margin-bottom: 0.5rem;">
-            E = 5·cos x + cos(2x) - 3·sen(3x), para x = 180°
+            E = 5·cos x + cos(2x) - sen(3x/2), para x = 180°, é
           </p>
 
           <div class="step-box" style="margin: 0.5rem 0; padding: 0.6rem 1rem;">
@@ -554,12 +690,12 @@
             <div class="calc-steps">
               <span class="step-line">cos 180° = -1</span>
               <span class="step-line">cos(2·180°) = cos 360° = 1</span>
-              <span class="step-line">sen(3·180°) = sen 540° = sen 180° = 0</span>
-              <span class="step-line" style="font-weight: 700; margin-top: 0.3rem;">E = 5·(-1) + 1 - 3·0</span>
-              <span class="step-line">E = -5 + 1 + 0</span>
+              <span class="step-line">sen(3·180°/2) = sen 270° = -1</span>
+              <span class="step-line" style="font-weight: 700; margin-top: 0.3rem;">E = 5·(-1) + 1 - (-1)</span>
+              <span class="step-line">E = -5 + 1 + 1</span>
             </div>
             <div class="final-result" style="border-top: none; margin-top: 0.3rem; padding-top: 0;">
-              <span class="result-box">E = -4</span>
+              <span class="result-box">E = -3</span>
             </div>
           </div>
 
@@ -567,37 +703,83 @@
             <span class="alt">a) 0</span>
             <span class="alt">b) -1</span>
             <span class="alt">c) 1</span>
-            <span class="alt">d) 3</span>
-            <span class="alt certa">e) -4</span>
+            <span class="alt certa">d) -3</span>
+            <span class="alt">e) -4</span>
           </div>
         </div>
 
       </div>
     </article>
+        <article class="math-card">
+      <div class="date-badge dark">
+        Conteúdo: 19/08/2026
+      </div>
+      <h2 class="section-title">Relação Fundamental da Trigonometria</h2>
 
-    <!-- =========================================================
-         RESUMO DOS VALORES
-         ========================================================= -->
-    <article class="math-card">
-      <h2 class="section-title">Resumo - Valores Notáveis</h2>
-      
-      <div class="table-wrapper">
-        <table class="resumo-table">
-          <thead>
-            <tr>
-              <th>Ângulo</th>
-              <th>sen</th>
-              <th>cos</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr><td>0°</td><td>0</td><td>1</td></tr>
-            <tr><td>90°</td><td>1</td><td>0</td></tr>
-            <tr><td>180°</td><td>0</td><td>-1</td></tr>
-            <tr><td>270°</td><td>-1</td><td>0</td></tr>
-            <tr><td>360°</td><td>0</td><td>1</td></tr>
-          </tbody>
-        </table>
+      <p style="font-size: 0.95rem;">
+        Para qualquer arco trigonométrico de medida <strong>α</strong>, temos a relação deduzida a partir da aplicação do <strong>Teorema de Pitágoras</strong> no triângulo retângulo <strong>OMP</strong>, temos: <strong>(PM)²+(OP)²=(OM)²</strong>
+      </p>
+
+              </div>
+        <div class="item">
+          <img src="1.png" 
+               alt="Variação do sinal do Cosseno no círculo trigonométrico" 
+               class="sinal-imagem dark-border" 
+               loading="lazy">
+        </div>
+
+      <p style="font-size: 0.85rem; font-weight: 600; margin-top: 1rem;">
+        Observe que, da relação fundamental da trigonometria, obtemos:<bt/><br/> <strong>sen² α = 1 - cos² α </strong> <br />e <br /> <strong>cos² α = 1 - sen² α</strong>
+        
+        
+      </p>
+
+      <div class="step-box dark" style="margin-top: 1.5rem;">
+        <div class="step-number">Exemplo 1</div>
+        <p style="font-size: 0.9rem; font-weight: 600;">
+          Dado que <strong>sen α = 1/3</strong>, com <strong>π/2 &lt; α &lt; π</strong> (2º Quadrante), calcule o valor de <strong>cos α</strong>.
+        </p>
+
+        <div class="calc-steps" style="margin-top: 0.5rem;">
+          <span class="step-line">sen² α + cos² α = 1</span>
+          <span class="step-line">(1/3)² + cos² α = 1</span>
+          <span class="step-line">1/9 + cos² α = 1</span>
+          <span class="step-line">cos² α = 1 - 1/9</span>
+          <span class="step-line">cos² α = (9/9) - (1/9) = 8/9</span>
+          <span class="step-line">cos α = ± √(8/9)</span>
+          <span class="step-line">cos α = ± √8 / 3 = ± 2√2 / 3</span>
+        </div>
+
+        <p style="font-size: 0.85rem; margin-top: 0.5rem; color: var(--accent-dark);">
+          <em>Como α pertence ao 2º Quadrante (π/2 &lt; α &lt; π), o cosseno é negativo:</em>
+        </p>
+
+        <div class="final-result">
+          <span class="result-box">cos α = - 2√2 / 3</span>
+        </div>
+      </div>
+
+      <div class="step-box dark" style="margin-top: 1rem;">
+        <div class="step-number">Exemplo 2</div>
+        <p style="font-size: 0.9rem; font-weight: 600;">
+          Determine os valores de <strong>sen x</strong> e <strong>cos x</strong> sabendo que <strong>sen x = 3 · cos x</strong> e que <strong>π &lt; x &lt; 3π/2</strong> (3º Quadrante).
+        </p>
+        </div>
+        <div class="final-result">
+          <span class="result-box">Calculo</span>
+        </div>
+                </div>
+        <div class="item">
+          <img src="2.png" 
+               alt="Variação do sinal do Cosseno no círculo trigonométrico" 
+               class="sinal-imagem dark-border" 
+               loading="lazy">
+        </div>
+
+        <div class="final-result">
+          <span class="result-box">cos x = - √10 / 10</span><br/>
+          <span class="result-box" style="margin-left: 0.5rem;">sen x = - 3.√10 / 10</span>
+        </div>
       </div>
     </article>
 
@@ -607,5 +789,75 @@
     <p>Conteúdo organizado com carinho — Trigonometria</p>
   </footer>
 
-</body>
-</html>
+  <!-- =========================================================
+       LIGHTBOX - ESTRUTURA HTML
+       ========================================================= -->
+  <div class="lightbox-overlay" id="lightboxOverlay" role="dialog" aria-modal="true" aria-label="Visualização ampliada da imagem">
+    <div class="lightbox-content" id="lightboxContent">
+      <img id="lightboxImg" src="" alt="Imagem ampliada">
+    </div>
+    <button class="close-lightbox" id="closeLightbox" aria-label="Fechar visualização ampliada">✕</button>
+  </div>
+
+  <!-- =========================================================
+       LIGHTBOX - JAVASCRIPT
+       ========================================================= -->
+  <script>
+    (function() {
+      const overlay = document.getElementById('lightboxOverlay');
+      const lightboxImg = document.getElementById('lightboxImg');
+      const closeBtn = document.getElementById('closeLightbox');
+
+      // Função para abrir o lightbox
+      function openLightbox(imageSrc, altText) {
+        lightboxImg.src = imageSrc;
+        lightboxImg.alt = altText || 'Imagem ampliada';
+        overlay.classList.add('active');
+        document.body.style.overflow = 'hidden'; // Evita scroll do fundo
+      }
+
+      // Função para fechar o lightbox
+      function closeLightbox() {
+        overlay.classList.remove('active');
+        document.body.style.overflow = '';
+      }
+
+      // Adiciona evento de clique em todas as imagens com a classe .sinal-imagem
+      const images = document.querySelectorAll('.sinal-imagem');
+      images.forEach(img => {
+        img.addEventListener('click', function(e) {
+          e.stopPropagation();
+          const src = this.getAttribute('src');
+          const alt = this.getAttribute('alt') || 'Imagem';
+          if (src) {
+            openLightbox(src, alt);
+          }
+        });
+
+        // Adiciona indicação de que é clicável (para acessibilidade)
+        img.setAttribute('role', 'button');
+        img.setAttribute('tabindex', '0');
+        img.setAttribute('aria-label', 'Clique para ampliar imagem');
+        
+        // Permite abrir com tecla Enter/espaço
+        img.addEventListener('keydown', function(e) {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            this.click();
+          }
+        });
+      });
+
+      // Fechar com o botão X
+      closeBtn.addEventListener('click', closeLightbox);
+
+      // Fechar clicando no overlay (fundo escuro)
+      overlay.addEventListener('click', function(e) {
+        // Fecha apenas se clicar no fundo, não no conteúdo da imagem
+        if (e.target === overlay) {
+          closeLightbox();
+        }
+      });
+
+      // Fechar com tecla ESC
+      document.addEventListener('keydown', function(e) {
