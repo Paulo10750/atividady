@@ -2,24 +2,566 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>Início</title>
   <link rel="stylesheet" href="styles.css">
+  <style>
+    /* =========================================================
+       RESET E VARIÁVEIS - TOM ROSA
+       ========================================================= */
+    :root {
+      --accent-primary: #E84393;
+      --accent-dark: #C2185B;
+      --accent-soft: #FCE4EC;
+      --accent-light: #F8BBD0;
+      --accent-gradient: linear-gradient(135deg, #E84393, #C2185B);
+      --bg-page: #FFF5F7;
+      --bg-card: #FFFFFF;
+      --text-main: #2D1B2E;
+      --text-muted: #7A4A6E;
+      --border-soft: #F3C4D6;
+      --shadow-soft: 0 4px 20px rgba(232, 67, 147, 0.15);
+      --radius-card: 16px;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: var(--bg-page);
+      color: var(--text-main);
+      line-height: 1.6;
+      min-height: 100vh;
+      overflow-x: hidden;
+      padding-bottom: 2rem;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    /* =========================================================
+       HEADER - LOGO MENOR
+       ========================================================= */
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.6rem 1.2rem;
+      background: var(--bg-card);
+      box-shadow: 0 2px 12px rgba(232, 67, 147, 0.08);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      background: rgba(255, 255, 255, 0.92);
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-weight: 700;
+      font-size: 0.95rem;
+      color: var(--accent-dark);
+      text-decoration: none;
+    }
+
+    .logo-img {
+      width: 34px;
+      height: 34px;
+      border-radius: 50% !important;
+      object-fit: cover;
+      border: 2px solid var(--accent-primary);
+    }
+
+    .logo span {
+      font-size: 0.85rem;
+      letter-spacing: 0.05em;
+    }
+
+    /* Menu */
+    .menu-container {
+      position: relative;
+    }
+
+    .menu-btn {
+      width: 40px;
+      height: 40px;
+      border-radius: 50% !important;
+      border: none;
+      background: var(--accent-soft);
+      color: var(--accent-dark);
+      font-size: 1.4rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s ease;
+      box-shadow: 0 2px 8px rgba(232, 67, 147, 0.2);
+    }
+
+    .menu-btn:active {
+      transform: scale(0.92);
+    }
+
+    .dropdown-menu {
+      display: none;
+      position: absolute;
+      top: calc(100% + 10px);
+      right: 0;
+      background: var(--bg-card);
+      border-radius: var(--radius-card) !important;
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
+      padding: 1rem 0;
+      min-width: 210px;
+      border: 1px solid var(--border-soft);
+      z-index: 200;
+    }
+
+    .dropdown-menu.active {
+      display: block;
+      animation: slideDown 0.2s ease;
+    }
+
+    @keyframes slideDown {
+      from { opacity: 0; transform: translateY(-8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .dropdown-menu span {
+      display: block;
+      padding: 0.2rem 1.2rem 0.6rem;
+      font-weight: 700;
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--text-muted);
+      border-bottom: 2px solid var(--accent-soft);
+    }
+
+    .dropdown-menu ul {
+      list-style: none;
+      padding: 0.4rem 0;
+    }
+
+    .dropdown-menu ul li a {
+      display: block;
+      padding: 0.5rem 1.2rem;
+      color: var(--text-main);
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.9rem;
+      transition: background 0.15s ease;
+    }
+
+    .dropdown-menu ul li a:active {
+      background: var(--accent-soft);
+    }
+
+    /* =========================================================
+       MAIN - WELCOME
+       ========================================================= */
+    main {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 0 1rem;
+    }
+
+    .welcome-card {
+      background: var(--bg-card);
+      border-radius: var(--radius-card) !important;
+      padding: 1.8rem 1.5rem 2rem;
+      box-shadow: var(--shadow-soft);
+      margin-top: 1.2rem;
+      text-align: center;
+      border: 1px solid var(--border-soft);
+    }
+
+    .welcome-card h1 {
+      font-size: 1.8rem;
+      color: var(--accent-dark);
+      margin-bottom: 0.5rem;
+    }
+
+    .welcome-card h1 .highlight {
+      color: var(--accent-primary);
+    }
+
+    .welcome-card > p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      margin-bottom: 1rem;
+    }
+
+    .poem {
+      background: var(--accent-soft);
+      border-radius: 16px !important;
+      padding: 1rem 1.2rem;
+      margin: 1rem 0 1.5rem;
+      font-style: italic;
+      line-height: 1.8;
+      color: var(--accent-dark);
+      font-size: 0.9rem;
+      border-left: 4px solid var(--accent-primary);
+    }
+
+    /* =========================================================
+       CARROSSEL 3D - COM IMAGENS
+       ========================================================= */
+    .carousel-wrapper {
+      position: relative;
+      width: 100%;
+      padding: 1.5rem 0 2.5rem;
+      margin: 0.5rem 0 1rem;
+      overflow: hidden;
+      touch-action: pan-y;
+    }
+
+    .carousel-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      height: 240px;
+      perspective: 1000px;
+      width: 100%;
+    }
+
+    .carousel-track {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      width: 100%;
+      height: 100%;
+      transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      will-change: transform;
+    }
+
+    /* CARDS QUADRADOS COM IMAGENS */
+    .carousel-item {
+      position: absolute;
+      width: 160px;
+      height: 160px;
+      padding: 0.5rem;
+      background: var(--bg-card);
+      border-radius: var(--radius-card) !important;
+      box-shadow: 0 4px 16px rgba(232, 67, 147, 0.1);
+      border: 2px solid var(--border-soft);
+      text-align: center;
+      transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      cursor: pointer;
+      -webkit-tap-highlight-color: transparent;
+      will-change: transform, opacity, filter;
+      backface-visibility: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .carousel-item:active {
+      transform: scale(0.95) !important;
+    }
+
+    .carousel-item .item-image {
+      width: 70%;
+      height: 70%;
+      object-fit: contain;
+      border-radius: 12px !important;
+      display: block;
+      margin-bottom: 0.2rem;
+      background: var(--bg-page);
+      padding: 4px;
+    }
+
+    .carousel-item .item-label {
+      font-weight: 700;
+      font-size: 0.8rem;
+      color: var(--text-main);
+      display: block;
+      margin-top: 0.1rem;
+    }
+
+    .carousel-item .item-sub {
+      font-size: 0.55rem;
+      color: var(--text-muted);
+      font-weight: 500;
+      display: block;
+    }
+
+    /* Posições dos itens no carrossel 3D */
+    .carousel-item.center {
+      z-index: 10;
+      transform: scale(1.1) translateX(0) translateY(0);
+      opacity: 1;
+      filter: blur(0);
+      border-color: var(--accent-primary);
+      box-shadow: 0 8px 32px rgba(232, 67, 147, 0.3);
+      width: 180px;
+      height: 180px;
+      background: linear-gradient(145deg, #FFFFFF, #FFF5F7);
+    }
+
+    .carousel-item.center .item-image {
+      width: 65%;
+      height: 65%;
+    }
+
+    .carousel-item.center .item-label {
+      color: var(--accent-dark);
+      font-size: 0.9rem;
+    }
+
+    .carousel-item.left {
+      z-index: 5;
+      transform: scale(0.8) translateX(-75%) translateY(10px);
+      opacity: 0.5;
+      filter: blur(1px);
+      border-color: var(--border-soft);
+    }
+
+    .carousel-item.right {
+      z-index: 5;
+      transform: scale(0.8) translateX(75%) translateY(10px);
+      opacity: 0.5;
+      filter: blur(1px);
+      border-color: var(--border-soft);
+    }
+
+    .carousel-item.hidden {
+      z-index: 1;
+      transform: scale(0.6) translateX(0) translateY(25px);
+      opacity: 0;
+      filter: blur(3px);
+      pointer-events: none;
+    }
+
+    /* =========================================================
+       BOTÕES DE NAVEGAÇÃO DO CARROSSEL - ROSA
+       ========================================================= */
+    .carousel-nav {
+      display: flex;
+      justify-content: center;
+      gap: 1.2rem;
+      margin-top: 0.8rem;
+      align-items: center;
+    }
+
+    .carousel-nav .nav-btn {
+      width: 48px;
+      height: 48px;
+      border-radius: 50% !important;
+      border: 2px solid var(--accent-primary);
+      background: var(--bg-card);
+      color: var(--accent-primary);
+      font-size: 1.4rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s ease;
+      box-shadow: 0 2px 8px rgba(232, 67, 147, 0.15);
+      -webkit-tap-highlight-color: transparent;
+      touch-action: manipulation;
+    }
+
+    .carousel-nav .nav-btn:active {
+      transform: scale(0.9);
+      background: var(--accent-primary);
+      color: #fff;
+    }
+
+    .carousel-nav .nav-btn:disabled {
+      opacity: 0.3;
+      pointer-events: none;
+    }
+
+    .carousel-nav .dots {
+      display: flex;
+      gap: 0.5rem;
+      align-items: center;
+    }
+
+    .carousel-nav .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50% !important;
+      background: var(--border-soft);
+      border: none;
+      padding: 0;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      touch-action: manipulation;
+    }
+
+    .carousel-nav .dot.active {
+      background: var(--accent-primary);
+      width: 24px;
+      border-radius: 12px !important;
+    }
+
+    /* =========================================================
+       FOOTER
+       ========================================================= */
+    footer {
+      text-align: center;
+      padding: 1.5rem 1rem 0.5rem;
+      color: var(--text-muted);
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.03em;
+    }
+
+    /* =========================================================
+       RESPONSIVIDADE
+       ========================================================= */
+    @media (max-width: 480px) {
+      .carousel-container {
+        height: 200px;
+      }
+
+      .carousel-item {
+        width: 130px;
+        height: 130px;
+        padding: 0.4rem;
+      }
+
+      .carousel-item .item-image {
+        width: 65%;
+        height: 65%;
+      }
+
+      .carousel-item .item-label {
+        font-size: 0.7rem;
+      }
+
+      .carousel-item .item-sub {
+        font-size: 0.5rem;
+      }
+
+      .carousel-item.center {
+        width: 150px;
+        height: 150px;
+        transform: scale(1.05) translateX(0) translateY(0);
+      }
+
+      .carousel-item.center .item-image {
+        width: 60%;
+        height: 60%;
+      }
+
+      .carousel-item.center .item-label {
+        font-size: 0.8rem;
+      }
+
+      .carousel-item.left {
+        transform: scale(0.75) translateX(-70%) translateY(8px);
+      }
+
+      .carousel-item.right {
+        transform: scale(0.75) translateX(70%) translateY(8px);
+      }
+
+      .carousel-nav .nav-btn {
+        width: 40px;
+        height: 40px;
+        font-size: 1.1rem;
+      }
+
+      .welcome-card h1 {
+        font-size: 1.5rem;
+      }
+
+      .welcome-card {
+        padding: 1.2rem 1rem 1.5rem;
+      }
+
+      /* Logo menor no celular */
+      .logo-img {
+        width: 30px;
+        height: 30px;
+      }
+
+      .logo span {
+        font-size: 0.75rem;
+      }
+
+      .menu-btn {
+        width: 36px;
+        height: 36px;
+        font-size: 1.2rem;
+      }
+    }
+
+    @media (max-width: 360px) {
+      .carousel-container {
+        height: 170px;
+      }
+
+      .carousel-item {
+        width: 110px;
+        height: 110px;
+        padding: 0.3rem;
+      }
+
+      .carousel-item .item-image {
+        width: 60%;
+        height: 60%;
+      }
+
+      .carousel-item .item-label {
+        font-size: 0.6rem;
+      }
+
+      .carousel-item.center {
+        width: 130px;
+        height: 130px;
+        transform: scale(1.0) translateX(0) translateY(0);
+      }
+
+      .carousel-item.center .item-image {
+        width: 55%;
+        height: 55%;
+      }
+
+      .carousel-item.center .item-label {
+        font-size: 0.7rem;
+      }
+
+      .carousel-item.left {
+        transform: scale(0.7) translateX(-65%) translateY(6px);
+      }
+
+      .carousel-item.right {
+        transform: scale(0.7) translateX(65%) translateY(6px);
+      }
+
+      .logo-img {
+        width: 26px;
+        height: 26px;
+      }
+
+      .logo span {
+        font-size: 0.65rem;
+      }
+    }
+  </style>
 </head>
 <body>
 
   <header>
     <div class="logo">
-  <img src="Fofo.gif" class="logo-img" alt="Logo">
-  <span>INÍCIO</span>
-</div>
+      <img src="Fofo.gif" class="logo-img" alt="Logo">
+      <span>INÍCIO</span>
+    </div>
 
-    
     <div class="menu-container">
-      <!-- Botão Redondo com Ícone Hambúrguer (3 Linhas) -->
       <button class="menu-btn" id="menuBtn" aria-label="Abrir Menu">&#9776;</button>
-      
-      <!-- Menu Dropdown Oculto -->
       <nav class="dropdown-menu" id="dropdownMenu">
         <span>Navegação</span>
         <ul>
@@ -40,27 +582,33 @@
   <main>
     <section class="welcome-card">
       <h1>Seja Bem-vindo(a)</h1>
-      <p>Este é o meu cantinho digital, organizado para compartilhar meus conteúdos, anotações e atividades escolares.</p>
-      
+      <p>Este site tem como objetivo compartilhar o conteúdo atualizado de cada matéria.</p>
+
       <div class="poem">
         <p>No tear dos dias, traço o caminho,</p>
         <p>Cada ideia tecida com calma e carinho.</p>
         <p>O saber se transforma em aprendizado,</p>
         <p>E o futuro se molda no que foi semeado.</p>
       </div>
+      <br />
+      <p>Selecione uma matéria abaixo.</p>
 
-      <div class="buttons-container">
-        <a href="pca.html" class="btn">PCA</a>
-        <a href="sociologia.html" class="btn">Sociologia</a>
-        <a href="portugues.html" class="btn">Português</a>
-        <a href="filosofia.html" class="btn">Filosofia</a>
-        <a href="geografia.html" class="btn">Geografia</a>
-        <a href="redacao.html" class="btn">Redação</a>
-        <a href="matematica.html" class ="btn">Matemática Básica</a>
-        <a href="historia.html" class="btn">História</a>
-        <a href="edc.html" class="btn">Educação Física</a>
-        <a href="matematicaa.html" class="btn">Matemática</a>
-        
+      <!-- =========================================================
+           CARROSSEL 3D COM IMAGENS
+           ========================================================= -->
+      <div class="carousel-wrapper">
+        <div class="carousel-container" id="carouselContainer">
+          <div class="carousel-track" id="carouselTrack">
+            <!-- Os itens serão inseridos via JavaScript -->
+          </div>
+        </div>
+
+        <!-- Navegação -->
+        <div class="carousel-nav">
+          <button class="nav-btn" id="prevBtn" aria-label="Anterior">‹</button>
+          <div class="dots" id="dotsContainer"></div>
+          <button class="nav-btn" id="nextBtn" aria-label="Próximo">›</button>
+        </div>
       </div>
     </section>
   </main>
@@ -69,20 +617,364 @@
     <p>&copy; 𝒜𝓉𝓊𝓁𝒾𝒶𝓏𝒶𝒹ℴ</p>
   </footer>
 
+  <!-- =========================================================
+       JAVASCRIPT - CARROSSEL 3D COM IMAGENS
+       ========================================================= -->
   <script>
+    // =========================================================
+    // 1. DADOS DOS ITENS COM IMAGENS (pasta img/)
+    // =========================================================
+    const itemsData = [
+      { 
+        icon: 'img/um.gif', 
+        label: 'PCA', 
+        sub: 'Projeto de Vida', 
+        link: 'pca.html' 
+      },
+      { 
+        icon: 'img/A2.gif', 
+        label: 'Sociologia', 
+        sub: 'Estudos Sociais', 
+        link: 'sociologia.html' 
+      },
+      { 
+        icon: 'img/A3.gif', 
+        label: 'Português', 
+        sub: 'Língua & Literatura', 
+        link: 'portugues.html' 
+      },
+      { 
+        icon: 'img/A4.gif', 
+        label: 'Filosofia', 
+        sub: 'Pensamento Crítico', 
+        link: 'filosofia.html' 
+      },
+      { 
+        icon: 'img/Um.gif', 
+        label: 'Geografia', 
+        sub: 'Espaço & Sociedade', 
+        link: 'geografia.html' 
+      },
+      { 
+        icon: 'img/A5.gif', 
+        label: 'Redação', 
+        sub: 'Escrita Criativa', 
+        link: 'redacao.html' 
+      },
+      { 
+        icon: 'img/A6.gif', 
+        label: 'Mat. Básica', 
+        sub: 'Fundamentos', 
+        link: 'matematica.html' 
+      },
+      { 
+        icon: 'img/A7.gif', 
+        label: 'História', 
+        sub: 'Tempo & Memória', 
+        link: 'historia.html' 
+      },
+      { 
+        icon: 'img/A8.gif', 
+        label: 'Educação Física', 
+        sub: 'Movimento & Saúde', 
+        link: 'edc.html' 
+      },
+      { 
+        icon: 'img/Quatro.gif', 
+        label: 'Matemática', 
+        sub: 'Avançada', 
+        link: 'matematicaa.html' 
+      }
+    ];
+
+    // =========================================================
+    // 2. ESTADO DO CARROSSEL
+    // =========================================================
+    let currentIndex = 0;
+    const totalItems = itemsData.length;
+    let autoPlayInterval = null;
+    let isTransitioning = false;
+    let touchStartX = 0;
+    let touchEndX = 0;
+    let isDragging = false;
+
+    const track = document.getElementById('carouselTrack');
+    const dotsContainer = document.getElementById('dotsContainer');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+
+    // =========================================================
+    // 3. RENDERIZAÇÃO DOS ITENS COM IMAGENS
+    // =========================================================
+    function renderItems() {
+      track.innerHTML = '';
+      itemsData.forEach((item, index) => {
+        const div = document.createElement('div');
+        div.className = 'carousel-item';
+        div.dataset.index = index;
+        div.innerHTML = `
+          <img src="${item.icon}" alt="${item.label}" class="item-image" loading="lazy">
+          <span class="item-label">${item.label}</span>
+          <span class="item-sub">${item.sub}</span>
+        `;
+        // Ao clicar no item, navega para o link
+        div.addEventListener('click', () => {
+          window.location.href = item.link;
+        });
+        // Acessibilidade: tecla Enter
+        div.setAttribute('role', 'button');
+        div.setAttribute('tabindex', '0');
+        div.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            window.location.href = item.link;
+          }
+        });
+        track.appendChild(div);
+      });
+
+      // Cria os dots
+      dotsContainer.innerHTML = '';
+      for (let i = 0; i < totalItems; i++) {
+        const dot = document.createElement('button');
+        dot.className = 'dot';
+        dot.setAttribute('aria-label', `Ir para item ${i + 1}`);
+        dot.dataset.index = i;
+        dot.addEventListener('click', () => goTo(i));
+        dotsContainer.appendChild(dot);
+      }
+
+      updateCarousel();
+    }
+
+    // =========================================================
+    // 4. ATUALIZAÇÃO DAS POSIÇÕES
+    // =========================================================
+    function updateCarousel() {
+      const items = track.querySelectorAll('.carousel-item');
+      const total = items.length;
+
+      items.forEach((item, index) => {
+        // Remove todas as classes de posição
+        item.classList.remove('center', 'left', 'right', 'hidden');
+
+        // Calcula a distância circular do índice atual
+        let diff = index - currentIndex;
+        // Ajusta para a menor distância circular
+        if (diff > total / 2) diff -= total;
+        if (diff < -total / 2) diff += total;
+
+        if (diff === 0) {
+          item.classList.add('center');
+        } else if (diff === -1 || diff === total - 1) {
+          item.classList.add('left');
+        } else if (diff === 1 || diff === -(total - 1)) {
+          item.classList.add('right');
+        } else {
+          item.classList.add('hidden');
+        }
+      });
+
+      // Atualiza dots
+      const dots = dotsContainer.querySelectorAll('.dot');
+      dots.forEach((dot, i) => {
+        dot.classList.toggle('active', i === currentIndex);
+      });
+
+      // Atualiza estado dos botões (loop infinito, sempre habilitados)
+      prevBtn.disabled = false;
+      nextBtn.disabled = false;
+    }
+
+    // =========================================================
+    // 5. NAVEGAÇÃO
+    // =========================================================
+    function goTo(index) {
+      if (isTransitioning) return;
+      if (index < 0) index = totalItems - 1;
+      if (index >= totalItems) index = 0;
+      if (index === currentIndex) return;
+
+      isTransitioning = true;
+      currentIndex = index;
+      updateCarousel();
+
+      // Pequeno delay para permitir a transição CSS
+      setTimeout(() => {
+        isTransitioning = false;
+      }, 550);
+    }
+
+    function prev() {
+      goTo(currentIndex - 1);
+      resetAutoPlay();
+    }
+
+    function next() {
+      goTo(currentIndex + 1);
+      resetAutoPlay();
+    }
+
+    // =========================================================
+    // 6. AUTOPLAY
+    // =========================================================
+    function startAutoPlay() {
+      if (autoPlayInterval) clearInterval(autoPlayInterval);
+      autoPlayInterval = setInterval(() => {
+        if (!isTransitioning) {
+          next();
+        }
+      }, 3500);
+    }
+
+    function resetAutoPlay() {
+      if (autoPlayInterval) {
+        clearInterval(autoPlayInterval);
+        startAutoPlay();
+      }
+    }
+
+    // =========================================================
+    // 7. TOUCH / ARRASTE (SCROLL) - PARA CELULAR
+    // =========================================================
+    const container = document.getElementById('carouselContainer');
+
+    container.addEventListener('touchstart', (e) => {
+      touchStartX = e.changedTouches[0].screenX;
+      isDragging = true;
+      pauseAutoPlay();
+    }, { passive: true });
+
+    container.addEventListener('touchmove', (e) => {
+      if (!isDragging) return;
+      touchEndX = e.changedTouches[0].screenX;
+    }, { passive: true });
+
+    container.addEventListener('touchend', (e) => {
+      if (!isDragging) return;
+      isDragging = false;
+      const diff = touchStartX - touchEndX;
+      const threshold = 30;
+
+      if (diff > threshold) {
+        next();
+      } else if (diff < -threshold) {
+        prev();
+      }
+
+      touchStartX = 0;
+      touchEndX = 0;
+      resumeAutoPlay();
+    }, { passive: true });
+
+    // Suporte a mouse drag (desktop)
+    let mouseDown = false;
+    let mouseStartX = 0;
+    let mouseEndX = 0;
+
+    container.addEventListener('mousedown', (e) => {
+      mouseDown = true;
+      mouseStartX = e.screenX;
+      pauseAutoPlay();
+    });
+
+    container.addEventListener('mousemove', (e) => {
+      if (!mouseDown) return;
+      mouseEndX = e.screenX;
+    });
+
+    container.addEventListener('mouseup', () => {
+      if (!mouseDown) return;
+      mouseDown = false;
+      const diff = mouseStartX - mouseEndX;
+      const threshold = 30;
+
+      if (diff > threshold) {
+        next();
+      } else if (diff < -threshold) {
+        prev();
+      }
+
+      mouseStartX = 0;
+      mouseEndX = 0;
+      resumeAutoPlay();
+    });
+
+    container.addEventListener('mouseleave', () => {
+      if (mouseDown) {
+        mouseDown = false;
+        mouseStartX = 0;
+        mouseEndX = 0;
+        resumeAutoPlay();
+      }
+    });
+
+    // =========================================================
+    // 8. PAUSA / RETOMADA DO AUTOPLAY
+    // =========================================================
+    let autoPlayPaused = false;
+
+    function pauseAutoPlay() {
+      if (autoPlayInterval) {
+        clearInterval(autoPlayInterval);
+        autoPlayInterval = null;
+        autoPlayPaused = true;
+      }
+    }
+
+    function resumeAutoPlay() {
+      if (autoPlayPaused) {
+        autoPlayPaused = false;
+        startAutoPlay();
+      }
+    }
+
+    container.addEventListener('mouseenter', pauseAutoPlay);
+    container.addEventListener('mouseleave', resumeAutoPlay);
+
+    // =========================================================
+    // 9. EVENTOS DOS BOTÕES
+    // =========================================================
+    prevBtn.addEventListener('click', prev);
+    nextBtn.addEventListener('click', next);
+
+    // =========================================================
+    // 10. MENU
+    // =========================================================
     const menuBtn = document.getElementById('menuBtn');
     const dropdownMenu = document.getElementById('dropdownMenu');
 
-    // Abre e fecha o menu ao clicar no botão
     menuBtn.addEventListener('click', (e) => {
       e.stopPropagation();
       dropdownMenu.classList.toggle('active');
     });
 
-    // Fecha o menu ao clicar fora dele
     document.addEventListener('click', () => {
       dropdownMenu.classList.remove('active');
     });
+
+    // =========================================================
+    // 11. INICIALIZAÇÃO
+    // =========================================================
+    renderItems();
+    setTimeout(() => {
+      startAutoPlay();
+    }, 300);
+
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden) {
+        if (autoPlayInterval) {
+          clearInterval(autoPlayInterval);
+          autoPlayInterval = null;
+        }
+      } else {
+        if (!autoPlayInterval && !autoPlayPaused) {
+          startAutoPlay();
+        }
+      }
+    });
+
+    console.log('🌸 Carrossel 3D Rosa com imagens inicializado com sucesso!');
   </script>
 
 </body>
