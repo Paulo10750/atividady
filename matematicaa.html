@@ -1,4 +1,4 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
@@ -305,16 +305,51 @@
       display: block;
       background: #fff;
       box-shadow: var(--shadow-soft);
-      cursor: pointer;
       transition: transform 0.2s ease;
-    }
-
-    .sinal-imagem:active {
-      transform: scale(0.95);
     }
 
     .sinal-imagem.dark-border {
       border-color: var(--accent-dark);
+    }
+
+    /* =========================================================
+       CONTAINER DA IMAGEM E MENSAGEM "CLIQUE PARA EXPANDIR"
+       ========================================================= */
+    .imagem-container {
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      margin: 0.5rem auto;
+      text-align: center;
+      user-select: none;
+    }
+
+    .imagem-container:hover .sinal-imagem,
+    .imagem-container:active .sinal-imagem {
+      transform: scale(0.97);
+    }
+
+    .dica-expandir {
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: var(--accent-dark);
+      background: var(--accent-soft);
+      padding: 0.25rem 0.7rem;
+      border-radius: 50px !important;
+      margin-top: 0.4rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      border: 1px solid var(--accent-light);
+      transition: background 0.2s ease, transform 0.2s ease;
+    }
+
+    .imagem-container:hover .dica-expandir,
+    .imagem-container:active .dica-expandir {
+      background: var(--accent-light);
+      transform: scale(1.04);
     }
 
     /* =========================================================
@@ -490,16 +525,16 @@
 <body>
 
   <header>
-     <div class="logo">
-  <img src="Fofo.gif" class="logo-img" alt="Logo">
-  <span>Matemática</span>
-</div>
+    <div class="logo">
+      <img src="Fofo.gif" class="logo-img" alt="Logo">
+      <span>Matemática</span>
+    </div>
     
     <div class="menu-container">
       <button class="menu-btn" id="menuBtn" aria-label="Abrir Menu">&#9776;</button>
       <nav class="dropdown-menu" id="dropdownMenu">
         <span>Navegação</span>
-<ul>
+        <ul>
           <li><a href="index.html">Início</a></li>
           <li><a href="pca.html">PCA</a></li>
           <li><a href="redacao.html">Redação</a></li>
@@ -568,10 +603,16 @@
       <div class="step-box dark">
         <div class="step-number">Exemplo - Valores notáveis.</div>
         <p style="font-size: 0.85rem; font-weight: 600; margin-bottom: 0.5rem;">Como o raio da circunferência trigonométrica é unitário (medida = 1), as coordenadas dos pontos A, B, A' e B' são as indicadas abaixo:</p>
-          <img src="A.png" 
-               alt="Variação do sinal do Seno no círculo trigonométrico" 
-               class="sinal-imagem" 
-               loading="lazy">
+        
+        <div style="text-align: center;">
+          <div class="imagem-container">
+            <img src="A.png" 
+                 alt="Variação do sinal do Seno no círculo trigonométrico" 
+                 class="sinal-imagem" 
+                 loading="lazy">
+            <span class="dica-expandir">🔍 Clique para expandir</span>
+          </div>
+        </div>
         
         <div class="valores-grid">
           <div class="col">
@@ -600,17 +641,23 @@
       <div class="sinais-grid">
         <div class="item">
           <div class="titulo">Seno</div>
-          <img src="B.png" 
-               alt="Variação do sinal do Seno no círculo trigonométrico" 
-               class="sinal-imagem" 
-               loading="lazy">
+          <div class="imagem-container">
+            <img src="B.png" 
+                 alt="Variação do sinal do Seno no círculo trigonométrico" 
+                 class="sinal-imagem" 
+                 loading="lazy">
+            <span class="dica-expandir">🔍 Clique para expandir</span>
+          </div>
         </div>
         <div class="item">
           <div class="titulo">Cosseno</div>
-          <img src="C.png" 
-               alt="Variação do sinal do Cosseno no círculo trigonométrico" 
-               class="sinal-imagem dark-border" 
-               loading="lazy">
+          <div class="imagem-container">
+            <img src="C.png" 
+                 alt="Variação do sinal do Cosseno no círculo trigonométrico" 
+                 class="sinal-imagem dark-border" 
+                 loading="lazy">
+            <span class="dica-expandir">🔍 Clique para expandir</span>
+          </div>
         </div>
       </div>
 
@@ -710,7 +757,8 @@
 
       </div>
     </article>
-        <article class="math-card">
+
+    <article class="math-card">
       <div class="date-badge dark">
         Conteúdo: 19/08/2026
       </div>
@@ -720,18 +768,18 @@
         Para qualquer arco trigonométrico de medida <strong>α</strong>, temos a relação deduzida a partir da aplicação do <strong>Teorema de Pitágoras</strong> no triângulo retângulo <strong>OMP</strong>, temos: <strong>(PM)²+(OP)²=(OM)²</strong>
       </p>
 
-              </div>
-        <div class="item">
+      <div style="text-align: center; margin: 1rem 0;">
+        <div class="imagem-container">
           <img src="1.png" 
-               alt="Variação do sinal do Cosseno no círculo trigonométrico" 
+               alt="Relação fundamental no círculo trigonométrico" 
                class="sinal-imagem dark-border" 
                loading="lazy">
+          <span class="dica-expandir">🔍 Clique para expandir</span>
         </div>
+      </div>
 
       <p style="font-size: 0.85rem; font-weight: 600; margin-top: 1rem;">
-        Observe que, da relação fundamental da trigonometria, obtemos:<bt/><br/> <strong>sen² α = 1 - cos² α </strong> <br />e <br /> <strong>cos² α = 1 - sen² α</strong>
-        
-        
+        Observe que, da relação fundamental da trigonometria, obtemos:<br/><br/> <strong>sen² α = 1 - cos² α </strong> <br />e <br /> <strong>cos² α = 1 - sen² α</strong>
       </p>
 
       <div class="step-box dark" style="margin-top: 1.5rem;">
@@ -764,21 +812,24 @@
         <p style="font-size: 0.9rem; font-weight: 600;">
           Determine os valores de <strong>sen x</strong> e <strong>cos x</strong> sabendo que <strong>sen x = 3 · cos x</strong> e que <strong>π &lt; x &lt; 3π/2</strong> (3º Quadrante).
         </p>
-        </div>
+
         <div class="final-result">
-          <span class="result-box">Calculo</span>
+          <span class="result-box">Cálculo</span>
         </div>
-                </div>
-        <div class="item">
-          <img src="2.png" 
-               alt="Variação do sinal do Cosseno no círculo trigonométrico" 
-               class="sinal-imagem dark-border" 
-               loading="lazy">
+
+        <div style="text-align: center; margin: 0.8rem 0;">
+          <div class="imagem-container">
+            <img src="2.png" 
+                 alt="Resolução do exemplo no círculo trigonométrico" 
+                 class="sinal-imagem dark-border" 
+                 loading="lazy">
+            <span class="dica-expandir">🔍 Clique para expandir</span>
+          </div>
         </div>
 
         <div class="final-result">
           <span class="result-box">cos x = - √10 / 10</span><br/>
-          <span class="result-box" style="margin-left: 0.5rem;">sen x = - 3.√10 / 10</span>
+          <span class="result-box" style="margin-top: 0.4rem;">sen x = - 3·√10 / 10</span>
         </div>
       </div>
     </article>
@@ -813,51 +864,65 @@
         lightboxImg.src = imageSrc;
         lightboxImg.alt = altText || 'Imagem ampliada';
         overlay.classList.add('active');
-        document.body.style.overflow = 'hidden'; // Evita scroll do fundo
+        document.body.style.overflow = 'hidden'; // Bloqueia a rolagem do fundo
       }
 
       // Função para fechar o lightbox
       function closeLightbox() {
         overlay.classList.remove('active');
-        document.body.style.overflow = '';
+        document.body.style.overflow = ''; // Libera a rolagem do fundo
       }
 
-      // Adiciona evento de clique em todas as imagens com a classe .sinal-imagem
-      const images = document.querySelectorAll('.sinal-imagem');
-      images.forEach(img => {
-        img.addEventListener('click', function(e) {
-          e.stopPropagation();
-          const src = this.getAttribute('src');
-          const alt = this.getAttribute('alt') || 'Imagem';
-          if (src) {
-            openLightbox(src, alt);
-          }
-        });
-
-        // Adiciona indicação de que é clicável (para acessibilidade)
-        img.setAttribute('role', 'button');
-        img.setAttribute('tabindex', '0');
-        img.setAttribute('aria-label', 'Clique para ampliar imagem');
+      // Adiciona o evento para cada container que agrupa a imagem e o texto
+      const containers = document.querySelectorAll('.imagem-container');
+      
+      containers.forEach(container => {
+        const img = container.querySelector('img');
         
-        // Permite abrir com tecla Enter/espaço
-        img.addEventListener('keydown', function(e) {
-          if (e.key === 'Enter' || e.key === ' ') {
-            e.preventDefault();
-            this.click();
-          }
-        });
+        if (img) {
+          // Clique abre a imagem ampliada
+          container.addEventListener('click', function(e) {
+            e.stopPropagation();
+            const src = img.getAttribute('src');
+            const alt = img.getAttribute('alt') || 'Imagem';
+            if (src) {
+              openLightbox(src, alt);
+            }
+          });
+
+          // Configurações de acessibilidade
+          container.setAttribute('role', 'button');
+          container.setAttribute('tabindex', '0');
+          container.setAttribute('aria-label', 'Clique para ampliar imagem');
+
+          // Suporte para acionamento via teclado (Enter / Espaço)
+          container.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' || e.key === ' ') {
+              e.preventDefault();
+              this.click();
+            }
+          });
+        }
       });
 
-      // Fechar com o botão X
+      // Fechar com o botão "✕"
       closeBtn.addEventListener('click', closeLightbox);
 
-      // Fechar clicando no overlay (fundo escuro)
+      // Fechar clicando fora da imagem (no fundo escuro)
       overlay.addEventListener('click', function(e) {
-        // Fecha apenas se clicar no fundo, não no conteúdo da imagem
         if (e.target === overlay) {
           closeLightbox();
         }
       });
 
-      // Fechar com tecla ESC
+      // Fechar pressionando a tecla ESC
       document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+          closeLightbox();
+        }
+      });
+    })();
+  </script>
+</body>
+</html>
+
